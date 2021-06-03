@@ -1,9 +1,10 @@
 import React, { CSSProperties } from 'react';
-import PokeDexSide, { pokeSide } from "./components/pokeDexSide"
-import PokeDexTop from "./components/pokeDexTop"
-import PokeDexCenter from "./components/pokeDexCenter"
-import PokeDexBottom from "./components/pokeDexBottom"
+import PokeDexSide, { pokeSide } from "./components/pokedexLayout/pokeDexSide"
+import PokeDexTop from "./components/pokedexLayout/pokeDexTop"
+import PokeDexCenter from "./components/pokedexLayout/pokeDexCenter"
+import PokeDexBottom from "./components/pokedexLayout/pokeDexBottom"
 import kanto from './assets/kanto.jpg'
+
 
 
 function App() {
