@@ -35,7 +35,8 @@ const center: CSSProperties = {
     backgroundColor: "#333333",
     width: "35px",
     height: "35px",
-    position: "relative"
+    position: "relative",
+    marginRight: "2em"
 }
 
 const top: CSSProperties = {
