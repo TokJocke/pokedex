@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { CSSProperties } from 'react';
+import PokeDexSide, { pokeSide } from "./components/pokeDexSide"
+import PokeDexTop from "./components/pokeDexTop"
+import PokeDexCenter from "./components/pokeDexCenter"
+import PokeDexBottom from "./components/pokeDexBottom"
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style = { mainWrap }>
+      <PokeDexSide> 
+        <PokeDexTop />
+        <PokeDexCenter />
+        <PokeDexBottom />
+      </PokeDexSide>
     </div>
-  );
+)}
+
+export const mainWrap: CSSProperties = {
+  width: "100vw",
+  minHeight: "100vh",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundImage: "url(../src/assets/kanto.jpg)" /* Funkar inte */
+
 }
+
 
 export default App;
