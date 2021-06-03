@@ -47,7 +47,7 @@ export default class PokeDexDisplay extends React.Component {
 }
 
 export const pokeDexDisplay: CSSProperties = {
-    backgroundColor: "lightgreen",
+    backgroundColor: "#51AC5F",
     padding: "1em",
     height: "80%",
     width: "90%",

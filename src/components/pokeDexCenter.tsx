@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import PokeDexDisplay, { pokeDexDisplay } from "./pokeDexDisplay"
+import NavBtnWrap from "./navBtnWrap"
 
 interface Props {
 }
@@ -9,8 +10,6 @@ export default class PokeDexCenter extends React.Component {
     constructor(props: Props) {
         super(props)
     
-
-
     }
 
 
@@ -19,6 +18,7 @@ export default class PokeDexCenter extends React.Component {
         return (
             <div style = {pokeDexTopStyle}>
                 <PokeDexDisplay />
+                <NavBtnWrap />
             </div>
     )
         
@@ -27,8 +27,8 @@ export default class PokeDexCenter extends React.Component {
 }
 
 export const pokeDexTopStyle: CSSProperties = {
-    backgroundColor: "red",
-    padding: "1em",
+    backgroundColor: "#DB0E2D",
+    padding: "0 1em",
     height: "70%",
     display: "flex",
     flexDirection: "column",

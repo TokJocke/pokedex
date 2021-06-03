@@ -19,7 +19,7 @@ export default class PokeDexTop extends React.Component {
     render() {
         return (
             <div style = {pokeDexTopStyle}>
-                sdsdsd
+                
             </div>
     )
         
@@ -28,8 +28,8 @@ export default class PokeDexTop extends React.Component {
 }
 
 export const pokeDexTopStyle: CSSProperties = {
-    backgroundColor: "red",
-    padding: "1em",
+    backgroundColor: "#DB0E2D",
+    padding: "0 1em",
     height: "15%"
 }
     

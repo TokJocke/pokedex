@@ -4,9 +4,10 @@ import PokeDexTop from "./components/pokeDexTop"
 import PokeDexCenter from "./components/pokeDexCenter"
 import PokeDexBottom from "./components/pokeDexBottom"
 
+
 function App() {
   return (
-    <div style = {mainWrap}>
+    <div style = { mainWrap }>
       <PokeDexSide> 
         <PokeDexTop />
         <PokeDexCenter />
@@ -21,6 +22,9 @@ export const mainWrap: CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  backgroundImage: "url(../src/assets/kanto.jpg)" /* Funkar inte */
+
 }
+
 
 export default App;

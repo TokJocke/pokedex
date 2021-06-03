@@ -30,7 +30,8 @@ export default class PokeDexSide extends React.Component {
 export const pokeSide: CSSProperties = {
     display: "flex",
     flexDirection: "column",
-    height: "70vh",
-    width: "20vw",
-    border: "1px solid black"
+    height: "568px",
+    width: "320px",
+    border: "2px solid black",
+    boxShadow: "0 0 20px 10px"
 } 

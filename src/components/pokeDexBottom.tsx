@@ -18,8 +18,8 @@ export default class PokeDexBottom extends React.Component {
 
     render() {
         return (
-            <div style = {pokeDexTopStyle}>
-                
+            <div style = {pokeDexBottomStyle}>
+                <input style = { pokeInput } placeholder = { "sök här...."} />
             </div>
     )
         
@@ -27,9 +27,20 @@ export default class PokeDexBottom extends React.Component {
 
 }
 
-export const pokeDexTopStyle: CSSProperties = {
-    backgroundColor: "blue",
-    padding: "1em",
-    height: "15%"
+export const pokeDexBottomStyle: CSSProperties = {
+    backgroundColor: "#DB0E2D",
+    padding: "0 1em",
+    height: "15%",
+    display: "flex",
+    alignItems: "top",
+    justifyContent: "center",
+    flexGrow: 1
 }
     
+export const pokeInput: CSSProperties = {
+    backgroundColor: "#51AC5F",
+    border: "2px solid black",
+    width: "90%",
+    height: "55%",
+    fontSize: "1.5em"
+}
