@@ -3,6 +3,8 @@ import PokeDexSide, { pokeSide } from "./components/pokedexLayout/pokeDexSide"
 import PokeDexTop from "./components/pokedexLayout/pokeDexTop"
 import PokeDexCenter from "./components/pokedexLayout/pokeDexCenter"
 import PokeDexBottom from "./components/pokedexLayout/pokeDexBottom"
+import kanto from './assets/kanto.jpg'
+
 
 
 function App() {
@@ -22,8 +24,8 @@ export const mainWrap: CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  backgroundImage: "url(../src/assets/kanto.jpg)" /* Funkar inte */
-
+  backgroundImage: `url(${kanto})`,
+  backgroundSize: "cover",
 }
 
 
