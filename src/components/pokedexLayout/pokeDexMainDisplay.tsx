@@ -3,10 +3,12 @@ import React, { CSSProperties } from 'react';
 
 
 interface Props {
+    currentPokemon: string  
+
 }
 
 
-export default class PokeDexDisplay extends React.Component {
+export default class PokeDexMainDisplay extends React.Component<Props> {
     constructor(props: Props) {
         super(props)
     
@@ -27,7 +29,7 @@ export default class PokeDexDisplay extends React.Component {
                 </div>
 
                 <div style = {pokeDexDisplay}>
-                    
+                    { this.props.currentPokemon }
                 </div>
 
                 <div style = { bottomBorderWrap }>

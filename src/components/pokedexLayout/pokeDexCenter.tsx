@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import PokeDexDisplay, { pokeDexDisplay } from "./pokeDexDisplay"
+import PokeDexDisplay, { pokeDexDisplay } from "./pokeDexMainDisplay"
 import NavBtnWrap from "./navBtnWrap"
 
 interface Props {
@@ -17,8 +17,7 @@ export default class PokeDexCenter extends React.Component {
     render() {
         return (
             <div style = {pokeDexTopStyle}>
-                <PokeDexDisplay />
-                <NavBtnWrap />
+                { this.props.children }
             </div>
     )
         

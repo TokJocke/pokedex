@@ -33,5 +33,6 @@ export const pokeSide: CSSProperties = {
     height: "568px",
     width: "320px",
     border: "2px solid black",
-    boxShadow: "0 0 20px 10px"
+    /* boxShadow: "0 0 20px 10px ", Blir muppig behöver hitta ett sätt att inte applicera denna i mellan 2 sidor */ 
+ 
 } 
