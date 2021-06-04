@@ -4,18 +4,61 @@ import React, { CSSProperties } from 'react';
 
 
 
-export default function getPokemons() {
-  
+export default function GetPokemons() {
+
+    const allPokemons: () => string[] = () => {
+       
+        const myArray: string[] = []
+        
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=60')
+        .then(response => response.json())
+        .then(data => myArray.push(data));
+        return myArray
+    }
+
     return (
-        ""
+        console.log(allPokemons)
     );
 }
 
-const secondDisplayStyle: CSSProperties = {
-    backgroundColor: "#51AC5F",
-    padding: "1em",
-    height: "40%",
-    width: "90%",
-    borderRadius: "1em",
-    border: "2px solid black"
-}
+
+
+
+
+
+/* 
+export default class TestApi extends React.Component {
+    constructor(props: Props) {
+        super(props)
+    
+    }
+
+    testApi: () => void = () => {
+
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=60')
+        .then(response => response.json())
+        .then(data => console.log(data));
+        
+    }
+
+
+    testpoke: () => void = () => {
+        fetch('https://pokeapi.co/api/v2/pokemon/3/')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    }
+
+
+
+    render() {
+        return (
+            <h1> 
+                api component working
+                {this.testpoke()} */
+                {/* {this.testApi()} */}
+/*             </h1>
+           
+        )
+    }
+
+} */

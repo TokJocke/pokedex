@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react';
 
 
 interface Props {
-    currentPokemon: string  
+    currentPokemon: string 
 
 }
 
@@ -15,7 +15,6 @@ export default class PokeDexMainDisplay extends React.Component<Props> {
 
 
     }
-
 
 
     render() {

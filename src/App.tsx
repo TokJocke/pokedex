@@ -11,34 +11,48 @@ import SearchInput from "./components/pokedexLayout/searchInput"
 import rightTopDetails from "./assets/topheader.svg"
 import leftTopDetails from "./assets/rightheader.svg"
 
-
 interface Props {
 
 }
 
 interface State {
-    allPokemons: string[]
+    allPokemons: []
+    currentPokemon?: string
 }
 export default class App extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props)
         this.state = {
-           allPokemons: [""]
+           allPokemons: [],
+           currentPokemon: undefined
         }
        
     }
+    /* Fecth för pokemon api */
+    getPokemons = async () => {
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=60");
+        const jsonData = await response.json();
+        this.setState({allPokemons: jsonData})
+        console.log(jsonData)
+        console.log("state in asyncFunc ", this.state.allPokemons)
 
+    };
+    /* Kallar på api när component har laddats */
+    componentDidMount(){
+        this.getPokemons()
+    }
+    
 
 
     render() {
         return (
             <div style = { mainWrap }>
-    
+                
                 <PokeDexSide> 
                     <PokeDexTop bgImg = { leftTopBgImg } />
                     <PokeDexCenter> 
-                        <PokeDexMainDisplay currentPokemon = { "testtesttest" } />
+                        <PokeDexMainDisplay currentPokemon = { "Pokemon visas här" } />
                         <NavBtnWrap />
                     </PokeDexCenter>
                     <PokeDexBottom> 
