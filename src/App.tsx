@@ -15,8 +15,12 @@ interface Props {
 
 }
 
+export interface PokemonIndex {
+    name: string
+    url: string
+}
 interface State {
-    allPokemons: []
+    allPokemons: PokemonIndex[]
     currentPokemon?: string
 }
 export default class App extends React.Component<Props, State> {
@@ -33,7 +37,7 @@ export default class App extends React.Component<Props, State> {
     getPokemons = async () => {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=60");
         const jsonData = await response.json();
-        this.setState({allPokemons: jsonData})
+        this.setState({allPokemons: jsonData.results})
         console.log(jsonData)
         console.log("state in asyncFunc ", this.state.allPokemons)
 
@@ -47,12 +51,12 @@ export default class App extends React.Component<Props, State> {
 
     render() {
         return (
-            <div style = { mainWrap }>
+            <div style={ mainWrap }>
                 
                 <PokeDexSide> 
-                    <PokeDexTop bgImg = { leftTopBgImg } />
+                    <PokeDexTop bgImg={ leftTopBgImg } />
                     <PokeDexCenter> 
-                        <PokeDexMainDisplay currentPokemon = { "Pokemon visas här" } />
+                        <PokeDexMainDisplay isLoading={false} allPokemons={this.state.allPokemons}/>
                         <NavBtnWrap />
                     </PokeDexCenter>
                     <PokeDexBottom> 
@@ -61,7 +65,7 @@ export default class App extends React.Component<Props, State> {
                 </PokeDexSide>
     
                 <PokeDexSide> 
-                    <PokeDexTop bgImg = { rightTopBgImg } />
+                    <PokeDexTop bgImg={ rightTopBgImg } />
                     <PokeDexCenter>
                         <PokeDexSecondDisplay />
                     </PokeDexCenter>

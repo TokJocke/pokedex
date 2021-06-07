@@ -1,12 +1,17 @@
 import React, { CSSProperties } from 'react';
-
+import { PokemonIndex } from '../../App';
+import MainDisplayView from "../pokedexFunctions/mainDisplayView"
 
 
 interface Props {
-    currentPokemon: string 
+    isLoading: boolean
+    allPokemons: PokemonIndex[]
 
 }
 
+interface State {
+
+}
 
 export default class PokeDexMainDisplay extends React.Component<Props> {
     constructor(props: Props) {
@@ -15,6 +20,9 @@ export default class PokeDexMainDisplay extends React.Component<Props> {
 
 
     }
+
+    /* Skapa condintional renderering för load/view pokemons */
+    
 
 
     render() {
@@ -28,7 +36,7 @@ export default class PokeDexMainDisplay extends React.Component<Props> {
                 </div>
 
                 <div style = {pokeDexDisplay}>
-                    { this.props.currentPokemon }
+                    <MainDisplayView allPokemons={this.props.allPokemons} />
                 </div>
 
                 <div style = { bottomBorderWrap }>
