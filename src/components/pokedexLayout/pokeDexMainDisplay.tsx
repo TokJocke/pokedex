@@ -1,28 +1,41 @@
 import React, { CSSProperties } from 'react';
-import { PokemonIndex } from '../../App';
+import { PokemonIndex } from '../pokedex';
 import MainDisplayView from "../pokedexFunctions/mainDisplayView"
 
 
 interface Props {
-    isLoading: boolean
     allPokemons: PokemonIndex[]
 
 }
 
 interface State {
+    isLoading: boolean
 
 }
 
-export default class PokeDexMainDisplay extends React.Component<Props> {
+export default class PokeDexMainDisplay extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
     
-
+        this.state = {
+            isLoading: true //Change to false to see pokemon list in view
+        }
 
     }
 
-    /* Skapa condintional renderering för load/view pokemons */
-    
+    /* condintional renderering för load/view pokemons */
+/*     loading = () => {
+        if(this.props.allPokemons.length) {
+            this.setState({
+                isLoading: false
+            })
+        }
+        else {
+            this.setState({
+                isLoading: true
+            })
+        }
+    } */
 
 
     render() {
@@ -36,7 +49,7 @@ export default class PokeDexMainDisplay extends React.Component<Props> {
                 </div>
 
                 <div style = {pokeDexDisplay}>
-                    <MainDisplayView allPokemons={this.props.allPokemons} />
+                    <MainDisplayView allPokemons={this.props.allPokemons} isLoading={this.state.isLoading} />
                 </div>
 
                 <div style = { bottomBorderWrap }>

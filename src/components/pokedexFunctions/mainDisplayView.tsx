@@ -1,9 +1,10 @@
 import React, { CSSProperties } from 'react';
-import { PokemonIndex } from '../../App';
+import { PokemonIndex } from '../pokedex';
 
 
 interface Props {
     allPokemons: PokemonIndex[]
+    isLoading: boolean
 }
 
 
@@ -18,11 +19,10 @@ export default function MainDisplayView(props: Props) {
        )
     })
 
-
     
     return (
         <div id={"mainDisplayView"} style={mainDisplay}>
-           {renderPokemon}
+           {props.isLoading ? <p>Loading database..</p> : renderPokemon}
         </div>
     )
         
