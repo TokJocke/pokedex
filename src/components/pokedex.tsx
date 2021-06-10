@@ -3,7 +3,6 @@ import PokeDexSide from "./pokedexLayout/pokeDexSide"
 import PokeDexTop from "./pokedexLayout/pokeDexTop"
 import PokeDexCenter from "./pokedexLayout/pokeDexCenter"
 import PokeDexBottom from "./pokedexLayout/pokeDexBottom"
-import kanto from '../assets/kanto.jpg'
 import PokeDexMainDisplay from "./pokedexLayout/pokeDexMainDisplay"
 import PokeDexSecondDisplay from "./pokedexLayout/pokeDexSecondDisplay"
 import NavBtnWrap from "./pokedexLayout/navBtnWrap"
@@ -33,7 +32,7 @@ export default class Pokedex extends React.Component<Props, State> {
         }
        
     }
-    /* Fecth för pokemon api */
+    /* Fecth för pokemon api. Bör denna ligga i componentDidMount istället? */
     getPokemons = async () => {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=60");
         const jsonData = await response.json();
@@ -50,8 +49,6 @@ export default class Pokedex extends React.Component<Props, State> {
         }, 3000)
     }
     
-
-
     render() {
         return (
             <div style={ mainWrap }>
@@ -60,7 +57,7 @@ export default class Pokedex extends React.Component<Props, State> {
                     <PokeDexTop bgImg={ leftTopBgImg } />
                     <PokeDexCenter> 
                         <PokeDexMainDisplay allPokemons={this.state.allPokemons}/>
-                        <NavBtnWrap />
+                        <NavBtnWrap/>
                     </PokeDexCenter>
                     <PokeDexBottom> 
                         <SearchInput />
@@ -81,13 +78,11 @@ export default class Pokedex extends React.Component<Props, State> {
 }
 
 export const mainWrap: CSSProperties = {
-  width: "100vw",
-  minHeight: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  backgroundImage: `url(${kanto})`,
-  backgroundSize: "cover",
+
+    display: "flex",
+    boxShadow: "0 0 40px 20px",
+    justifyContent: "center",
+   /*  flexDirection: "column" */ //Should be in mobile device
 }
 
 export const leftTopBgImg: CSSProperties = {

@@ -2,17 +2,17 @@ import React, { CSSProperties } from 'react';
 
 
 
-interface Props {
+/* interface Props {
 }
-
+ */
 
 export default class Dpad extends React.Component {
-    constructor(props: Props) {
+/*     constructor(props: Props) {
         super(props)
     
 
 
-    }
+    } */
 
 
 

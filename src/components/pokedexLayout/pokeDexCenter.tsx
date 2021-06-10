@@ -1,6 +1,5 @@
 import React, { CSSProperties } from 'react';
-import PokeDexDisplay, { pokeDexDisplay } from "./pokeDexMainDisplay"
-import NavBtnWrap from "./navBtnWrap"
+
 
 interface Props {
 }
