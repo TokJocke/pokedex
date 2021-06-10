@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Pokedex from "./components/pokedex"
-
+import Layout from "./components/layout"
 
 
 
 export default function App() {
     return (
-        <Pokedex />
+        <Layout />
     );
 }
+

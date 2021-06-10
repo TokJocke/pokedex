@@ -9,7 +9,7 @@ interface Props {
 }
 
 interface State {
-    isLoading: boolean
+ 
 
 }
 
@@ -17,24 +17,11 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
     
-        this.state = {
-            isLoading: true //Change to false to see pokemon list in view
-        }
-
     }
 
-    /* condintional renderering för load/view pokemons */
-/*     loading = () => {
-        if(this.props.allPokemons.length) {
-            this.setState({
-                isLoading: false
-            })
-        }
-        else {
-            this.setState({
-                isLoading: true
-            })
-        }
+    /* Skapa funktion som får knapparna att blinka när api ändras för mer levande pokedex */
+/*     blink = () => {
+       console.log(smallRoundDot.backgroundColor) 
     } */
 
 
@@ -42,16 +29,17 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
         return (
 
             <div style = { displayWrap }>
-
+                {/* Make theese into component */}
                 <div style = { smallRoundDotWrap }>
                     <div style = { smallRoundDot } />
                     <div style = { smallRoundDot } />
                 </div>
 
                 <div style = {pokeDexDisplay}>
-                    <MainDisplayView allPokemons={this.props.allPokemons} isLoading={this.state.isLoading} />
+                    <MainDisplayView allPokemons={this.props.allPokemons} isLoading={!this.props.allPokemons.length} />
                 </div>
 
+                {/* Make theese into component */}
                 <div style = { bottomBorderWrap }>
                     <div style = { mediumRoundDot } />
                     <div style = { lineWrap }> 
@@ -68,10 +56,11 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
 
 }
 
+
 export const pokeDexDisplay: CSSProperties = {
     backgroundColor: "#51AC5F",
     padding: "1em",
-    height: "80%",
+    height: "74%", //Om denna är större tappas proportioner på parent och "smallrounddot" skjuts upp
     width: "90%",
     borderRadius: "1em",
     border: "2px solid black"

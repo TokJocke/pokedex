@@ -4,6 +4,7 @@ import Dpad from "./dpad"
 
 
 interface Props {
+    
 }
 
 
@@ -14,17 +15,18 @@ export default class NavBtnWrap extends React.Component {
 
 
     }
-
-
-
+  
     render() {
         return (
             <div style = { wrapStyle }>
+                
                 <div style = { roundBtn } />
+               
                 <div style = { thinBtnWrap } > 
-                    <div style = { thinLineBtn } />
-                    <div style = { thinLineBtn }/>
+                    <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
+                    <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
                 </div>
+                
                 <Dpad />
                 
             </div>
@@ -59,5 +61,6 @@ const thinLineBtn: CSSProperties = {
     height: "10px",
     margin: "0.2em",
     border: "2px solid black",
-    borderRadius: "25px"
+    borderRadius: "25px",
 }
+

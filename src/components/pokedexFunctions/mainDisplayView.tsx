@@ -11,7 +11,7 @@ interface Props {
 
 export default function MainDisplayView(props: Props) {
   
-
+    console.log("in last component", props)
     
     const renderPokemon = props.allPokemons.map((pokemon) => {
        return (
@@ -19,7 +19,8 @@ export default function MainDisplayView(props: Props) {
        )
     })
 
-    
+
+    /* Skapa en loader som har någon grafisk effekt */
     return (
         <div id={"mainDisplayView"} style={mainDisplay}>
            {props.isLoading ? <p>Loading database..</p> : renderPokemon}
@@ -29,7 +30,8 @@ export default function MainDisplayView(props: Props) {
     ;
 }
 
-const mainDisplay: CSSProperties = {
+
+const mainDisplay: CSSProperties = { /* Någonting pajjar proportionerna i pdmainDisplay display wrap när name laddas */
     width: "100%",
     height: "100%",
     overflow: "scroll",
@@ -39,4 +41,5 @@ const mainDisplay: CSSProperties = {
 const pokemonName: CSSProperties = {
     marginTop: 0,
     marginBottom: "0.5em"
+    
 }
