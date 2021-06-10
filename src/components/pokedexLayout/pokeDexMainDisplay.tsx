@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
-import { PokemonIndex } from '../pokedex';
+import { PokeContext } from '../../context/pokeContext';
 import MainDisplayView from "../pokedexFunctions/mainDisplayView"
 
 
 interface Props {
-    allPokemons: PokemonIndex[]
+
 
 }
 
@@ -19,10 +19,7 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
     
     }
 
-    /* Skapa funktion som får knapparna att blinka när api ändras för mer levande pokedex */
-/*     blink = () => {
-       console.log(smallRoundDot.backgroundColor) 
-    } */
+
 
 
     render() {
@@ -36,7 +33,16 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
                 </div>
 
                 <div style = {pokeDexDisplay}>
-                    <MainDisplayView allPokemons={this.props.allPokemons} isLoading={!this.props.allPokemons.length} />
+                    <PokeContext.Consumer>
+                        {
+                            ({allPokemons, currentPokemon}) => 
+                                <MainDisplayView 
+                                    allPokemons={allPokemons} 
+                                    currentPokemon={currentPokemon} 
+                                    isLoading={!allPokemons.length}
+                                /> 
+                        }
+                    </PokeContext.Consumer>
                 </div>
 
                 {/* Make theese into component */}
@@ -119,3 +125,10 @@ export const line: CSSProperties = {
     backgroundColor: "gray",
     
 }
+
+
+
+    /* Skapa funktion som får knapparna att blinka när api ändras för mer levande pokedex */
+/*     blink = () => {
+       console.log(smallRoundDot.backgroundColor) 
+    } */

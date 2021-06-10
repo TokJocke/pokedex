@@ -1,33 +1,31 @@
-import React, { CSSProperties } from 'react';
-import { PokemonIndex } from '../pokedex';
-
+import React, { CSSProperties, useState } from 'react';
+import { currentPokemon, PokeContext, PokemonIndex } from "../../context/pokeContext" 
 
 interface Props {
     allPokemons: PokemonIndex[]
     isLoading: boolean
+    currentPokemon?: currentPokemon
 }
 
 
 
 export default function MainDisplayView(props: Props) {
   
-    console.log("in last component", props)
     
+
+   /* Med hjälp av currentPokemon skapa funktion för att highlighta vald pokemon */
     const renderPokemon = props.allPokemons.map((pokemon) => {
        return (
-           <p style={pokemonName}>{pokemon.name}</p>
+           <p style={{...pokemonName, }}>{pokemon.name}</p>
        )
     })
 
-
-    /* Skapa en loader som har någon grafisk effekt */
     return (
-        <div id={"mainDisplayView"} style={mainDisplay}>
-           {props.isLoading ? <p>Loading database..</p> : renderPokemon}
-        </div>
+ 
+            <div id={"mainDisplayView"} style={mainDisplay}>
+                {props.isLoading ? <p>Loading...</p> : renderPokemon}
+            </div>
     )
-        
-    ;
 }
 
 

@@ -2,27 +2,29 @@ import React, { CSSProperties } from 'react';
 
 
 
-/* interface Props {
+interface Props {
+    setPokemon: () => void
 }
- */
 
-export default class Dpad extends React.Component {
-/*     constructor(props: Props) {
+
+export default class Dpad extends React.Component<Props> {
+    constructor(props: Props) {
         super(props)
     
 
 
-    } */
+    }
 
+    
 
 
     render() {
         return (
-            <div style = { center }>
-                <div style = { top }></div>
-                <div style = { bottom }></div>
-                <div style = { left }></div>
-                <div style = { right}></div>
+            <div style = {center}>
+                <div style ={top}></div>
+                <div style ={bottom} onClick={this.props.setPokemon}></div>
+                <div style ={left}></div>
+                <div style ={right}></div>
             </div>
     )
         
