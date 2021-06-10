@@ -9,6 +9,8 @@ import NavBtnWrap from "./pokedexLayout/navBtnWrap"
 import SearchInput from "./pokedexLayout/searchInput"
 import rightTopDetails from "../assets/topheader.svg"
 import leftTopDetails from "../assets/rightheader.svg"
+import BtnLayout from "./pokedexLayout/btnLayout"
+import GrayBoxes from "./pokedexLayout/grayBoxes"
 
 interface Props {
 
@@ -68,8 +70,11 @@ export default class Pokedex extends React.Component<Props, State> {
                     <PokeDexTop bgImg={ rightTopBgImg } />
                     <PokeDexCenter>
                         <PokeDexSecondDisplay />
+                        <BtnLayout />
                     </PokeDexCenter>
-                    <PokeDexBottom />
+                    <PokeDexBottom> 
+                        <GrayBoxes />
+                    </PokeDexBottom>
                 </PokeDexSide>
     
             </div>
