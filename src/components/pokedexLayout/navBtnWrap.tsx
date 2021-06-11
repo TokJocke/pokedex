@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import { PokeContext } from '../../context/pokeContext';
 import Dpad from "./dpad"
 
 
@@ -26,8 +27,11 @@ export default class NavBtnWrap extends React.Component {
                     <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
                     <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
                 </div>
-                
-                <Dpad />
+                <PokeContext.Consumer>
+                    {
+                        ({pokemonFuncs}) => <Dpad setPokemon={pokemonFuncs["setPokemon"]} /> 
+                    }
+                </PokeContext.Consumer>
                 
             </div>
     )

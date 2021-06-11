@@ -2,27 +2,27 @@ import React, { CSSProperties } from 'react';
 
 
 
-/* interface Props {
+interface Props {
+    setPokemon: (param?: number) => void
 }
- */
 
-export default class Dpad extends React.Component {
-/*     constructor(props: Props) {
+
+export default class Dpad extends React.Component<Props> {
+    constructor(props: Props) {
         super(props)
     
 
 
-    } */
-
+    }
 
 
     render() {
         return (
-            <div style = { center }>
-                <div style = { top }></div>
-                <div style = { bottom }></div>
-                <div style = { left }></div>
-                <div style = { right}></div>
+            <div style = {center}>
+                <div style ={top} onClick={() => this.props.setPokemon(-1)}></div>
+                <div style ={bottom} onClick={() => this.props.setPokemon(+1)}></div>
+                <div style ={left}></div>
+                <div style ={right}></div>
             </div>
     )
         

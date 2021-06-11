@@ -1,33 +1,46 @@
-import React, { CSSProperties } from 'react';
-import { PokemonIndex } from '../pokedex';
-
+import React, { CSSProperties, useState } from 'react';
+import { currentPokemon, PokeContext, PokemonIndex } from "../../context/pokeContext" 
 
 interface Props {
     allPokemons: PokemonIndex[]
     isLoading: boolean
+    currentPokemon?: currentPokemon
 }
 
 
 
 export default function MainDisplayView(props: Props) {
   
-    console.log("in last component", props)
     
+    /* Försöker skapa funktion som highlightar current pokemon i listan. */
+  
+        const currentName: string | undefined = props.currentPokemon?.pokemon.name    
+    
+
+
+   /* Med hjälp av currentPokemon skapa funktion för att highlighta vald pokemon */
     const renderPokemon = props.allPokemons.map((pokemon) => {
-       return (
-           <p style={pokemonName}>{pokemon.name}</p>
-       )
-    })
-
-
-    /* Skapa en loader som har någon grafisk effekt */
-    return (
-        <div id={"mainDisplayView"} style={mainDisplay}>
-           {props.isLoading ? <p>Loading database..</p> : renderPokemon}
-        </div>
-    )
+        if(currentName === pokemon.name ) {
+            return(
+                <p style={{...pokemonName, ...highLighted }}>{pokemon.name}</p>
+            )
+        }
+        else {
+            return (
+                <p style={{...pokemonName }}>{pokemon.name}</p>
+            )
+        }
         
-    ;
+       
+    })
+    
+    return (
+
+            <div id={"mainDisplayView"} style={mainDisplay}>
+                {props.isLoading ? <p>Loading...</p> : renderPokemon}
+                
+            </div>
+    )
 }
 
 
@@ -40,6 +53,28 @@ const mainDisplay: CSSProperties = { /* Någonting pajjar proportionerna i pdmai
 
 const pokemonName: CSSProperties = {
     marginTop: 0,
-    marginBottom: "0.5em"
-    
+    marginBottom: "0.5em",
+    paddingLeft: "0.5em"
+     
 }
+
+const highLighted: CSSProperties = {
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    fontWeight: "bold",
+    borderRadius: "5px"
+}
+
+
+
+
+
+
+/* 
+
+const renderPokemon = props.allPokemons.map((pokemon) => {
+    return (
+        
+       <p style={{...pokemonName }}>{pokemon.name}</p>
+   ) 
+   
+}) */
