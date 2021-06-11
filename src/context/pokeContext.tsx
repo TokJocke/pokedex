@@ -3,7 +3,8 @@ import { createContext } from 'react'
 export interface PokemonOptions {
     allPokemons: PokemonIndex[]
     currentPokemon?: currentPokemon
-    setPokemon: () => void
+    /* setPokemon: () => void */
+    pokemonFuncs: PokemonFuncs
 
 }
 
@@ -11,6 +12,10 @@ export interface PokemonIndex {
     name: string
     url: string
     pokemonData?: any 
+}
+
+export interface PokemonFuncs {
+    setPokemon: (param?: number) => void
 }
 
 export interface currentPokemon {
@@ -21,5 +26,7 @@ export interface currentPokemon {
 export const PokeContext = createContext({
     allPokemons: [],
     currentPokemon: undefined,
-    setPokemon: () => {}
+    pokemonFuncs: {
+        setPokemon: (param?: number) => {},
+    }
 } as PokemonOptions)

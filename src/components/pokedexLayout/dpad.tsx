@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react';
 
 
 interface Props {
-    setPokemon: () => void
+    setPokemon: (param?: number) => void
 }
 
 
@@ -15,14 +15,12 @@ export default class Dpad extends React.Component<Props> {
 
     }
 
-    
-
 
     render() {
         return (
             <div style = {center}>
-                <div style ={top}></div>
-                <div style ={bottom} onClick={this.props.setPokemon}></div>
+                <div style ={top} onClick={() => this.props.setPokemon(-1)}></div>
+                <div style ={bottom} onClick={() => this.props.setPokemon(+1)}></div>
                 <div style ={left}></div>
                 <div style ={right}></div>
             </div>

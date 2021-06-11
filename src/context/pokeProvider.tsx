@@ -8,7 +8,9 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
 
     state: PokemonOptions = {
         allPokemons: [],
-        setPokemon: this.setPokemon.bind(this)
+        pokemonFuncs: {
+            setPokemon: this.setPokemon.bind(this),
+        }
     }
 
     getPokemons = async () => {
@@ -28,9 +30,8 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
     }
 
 
-    /* Fixa så att funktionen funkar för upp och ner */
-    setPokemon() {
-        
+    setPokemon(param?: number) {
+       
         if(!this.state.currentPokemon) {
             this.setState({
                 currentPokemon: {
@@ -38,17 +39,15 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
                     pokemon: this.state.allPokemons[0]
                 }
             }, () => {console.log(this.state.currentPokemon)})
-            
-        }else {
+        }else if (this.state.currentPokemon && param) {
             this.setState({
                 currentPokemon: {
-                    index: this.state.currentPokemon.index + 1,
-                    pokemon: this.state.allPokemons[this.state.currentPokemon.index + 1]
+                    index: this.state.currentPokemon.index + param,
+                    pokemon: this.state.allPokemons[this.state.currentPokemon.index + param]
                 }
-            }, () => {console.log(this.state.currentPokemon)} )     
+            }, () => {console.log(this.state.currentPokemon)} )
         }
     }
-
 
 
     render() {

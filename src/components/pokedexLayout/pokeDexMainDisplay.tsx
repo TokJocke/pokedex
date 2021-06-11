@@ -65,7 +65,7 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
 
 export const pokeDexDisplay: CSSProperties = {
     backgroundColor: "#51AC5F",
-    padding: "1em",
+    padding: "0.5em",
     height: "74%", //Om denna är större tappas proportioner på parent och "smallrounddot" skjuts upp
     width: "90%",
     borderRadius: "1em",
@@ -82,7 +82,7 @@ export const displayWrap: CSSProperties = {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "5px 5px 5px 15%",
-    border: "2px solid black"
+    border: "2px solid black",
 }
 
 export const smallRoundDotWrap: CSSProperties = {

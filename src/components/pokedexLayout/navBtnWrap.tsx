@@ -29,7 +29,7 @@ export default class NavBtnWrap extends React.Component {
                 </div>
                 <PokeContext.Consumer>
                     {
-                        ({setPokemon}) => <Dpad setPokemon={setPokemon} /> 
+                        ({pokemonFuncs}) => <Dpad setPokemon={pokemonFuncs["setPokemon"]} /> 
                     }
                 </PokeContext.Consumer>
                 
