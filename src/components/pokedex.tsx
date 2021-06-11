@@ -10,6 +10,9 @@ import SearchInput from "./pokedexLayout/searchInput"
 import rightTopDetails from "../assets/topheader.svg"
 import leftTopDetails from "../assets/rightheader.svg"
 import PokemonProvider from '../context/pokeProvider';
+import BtnLayout from "./pokedexLayout/btnLayout"
+import GrayBoxes from "./pokedexLayout/grayBoxes"
+
 
 interface Props {
 
@@ -31,6 +34,7 @@ export default class Pokedex extends React.Component<Props, State> {
 
     render() {
         return (
+          
             <PokemonProvider>
                 <div style={ mainWrap }> 
                     <PokeDexSide> 
@@ -48,8 +52,11 @@ export default class Pokedex extends React.Component<Props, State> {
                         <PokeDexTop bgImg={ rightTopBgImg } />
                         <PokeDexCenter>
                             <PokeDexSecondDisplay />
-                        </PokeDexCenter>
-                        <PokeDexBottom />
+                        <BtnLayout />
+                      </PokeDexCenter>
+                    <PokeDexBottom> 
+                        <GrayBoxes />
+                    </PokeDexBottom>
                     </PokeDexSide>
                 </div>
             </PokemonProvider>
