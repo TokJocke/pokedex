@@ -40,12 +40,15 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
                 }
             }, () => {console.log(this.state.currentPokemon)})
         }else if (this.state.currentPokemon && param) {
-            this.setState({
-                currentPokemon: {
-                    index: this.state.currentPokemon.index + param,
-                    pokemon: this.state.allPokemons[this.state.currentPokemon.index + param]
-                }
-            }, () => {console.log(this.state.currentPokemon)} )
+            const newIndex: number = this.state.currentPokemon.index + param
+            if(newIndex >= 0){
+                this.setState({
+                    currentPokemon: {
+                        index: newIndex,
+                        pokemon: this.state.allPokemons[newIndex]
+                    }
+                }, () => {console.log(this.state.currentPokemon)} )
+            }
         }
     }
 
