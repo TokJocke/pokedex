@@ -33,16 +33,12 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
                 </div>
 
                 <div style = {pokeDexDisplay}>
-                    <PokeContext.Consumer>
-                        {
-                            ({allPokemons, currentPokemon}) => 
-                                <MainDisplayView 
-                                    allPokemons={allPokemons} 
-                                    currentPokemon={currentPokemon} 
-                                    isLoading={!allPokemons.length}
-                                /> 
-                        }
-                    </PokeContext.Consumer>
+                    
+                       
+                            
+                                <MainDisplayView /> 
+                        
+                    
                 </div>
 
                 {/* Make theese into component */}

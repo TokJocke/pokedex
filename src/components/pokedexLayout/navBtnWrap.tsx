@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { PokeContext } from '../../context/pokeContext';
 import Dpad from "./dpad"
-
+import { Link } from "react-router-dom"
 
 
 interface Props {
@@ -13,27 +13,30 @@ export default class NavBtnWrap extends React.Component {
     constructor(props: Props) {
         super(props)
     
-
-
     }
-  
+    
+    
+
     render() {
         return (
-            <div style = { wrapStyle }>
-                
-                <div style = { roundBtn } />
-               
-                <div style = { thinBtnWrap } > 
-                    <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
-                    <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
-                </div>
-                <PokeContext.Consumer>
+ 
+                <PokeContext.Consumer>    
                     {
-                        ({pokemonFuncs}) => <Dpad setPokemon={pokemonFuncs["setPokemon"]} /> 
+                        ({pokemonFuncs, currentPokemon}) => {
+                            return(
+                                <div style = { wrapStyle }>
+                                    <Link to={`/detail/${currentPokemon?.pokemon.name}`} style = { roundBtn } />
+                                    <div style = { thinBtnWrap } > 
+                                        <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
+                                        <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
+                                    </div>
+                                    <Dpad setPokemon={pokemonFuncs["setPokemon"]} /> 
+                                </div>
+                            )    
+                        } 
                     }
                 </PokeContext.Consumer>
                 
-            </div>
     )
         
     }

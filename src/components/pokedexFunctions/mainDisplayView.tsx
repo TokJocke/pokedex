@@ -1,50 +1,25 @@
+import { List } from '@material-ui/core';
 import React, { CSSProperties, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { currentPokemon, PokeContext, PokemonIndex } from "../../context/pokeContext" 
-
-interface Props {
-    allPokemons: PokemonIndex[]
-    isLoading: boolean
-    currentPokemon?: currentPokemon
-}
+import DetailView from './detailView';
+import ListView from './listView';
 
 
 
-export default function MainDisplayView(props: Props) {
+
+export default function MainDisplayView() {
   
     
-    /* Försöker skapa funktion som highlightar current pokemon i listan. */
   
-    const currentName: string | undefined = props.currentPokemon?.pokemon.name    
-    
-    const somePokemons: () => PokemonIndex[] = () => {
-        const pokeIndex = props.currentPokemon?.index
-        
-            let somePokemonsArr = props.allPokemons.slice(pokeIndex, pokeIndex? pokeIndex + 6 : 6)
-            return somePokemonsArr
-    }
-
-    
-   /* Med hjälp av currentPokemon skapa funktion för att highlighta vald pokemon */
-    const renderPokemon = somePokemons().map((pokemon) => {
-        if(currentName === pokemon.name ) {
-            return(
-                <p style={{...pokemonName, ...highLighted }}>{pokemon.name}</p>
-            )
-        }
-        else {
-            return (
-                <p style={{...pokemonName }}>{pokemon.name}</p>
-            )
-        }
-        
-       
-    })
     
     return (
 
             <div id={"mainDisplayView"} style={mainDisplay}>
-                {props.isLoading ? <p>Loading...</p> : renderPokemon}
-                
+                <Switch>
+                    <Route exact path={"/"} component={ListView} />
+                    <Route path={"/detail/:pokeId"} component={DetailView} />
+                </Switch>                
             </div>
     )
 }
@@ -55,19 +30,6 @@ const mainDisplay: CSSProperties = { /* Någonting pajjar proportionerna i pdmai
     height: "100%",
     overflow: "scroll",
     
-}
-
-const pokemonName: CSSProperties = {
-    marginTop: 0,
-    marginBottom: "0.5em",
-    paddingLeft: "0.5em"
-     
-}
-
-const highLighted: CSSProperties = {
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
-    fontWeight: "bold",
-    borderRadius: "5px"
 }
 
 

@@ -12,6 +12,7 @@ import leftTopDetails from "../assets/rightheader.svg"
 import PokemonProvider from '../context/pokeProvider';
 import BtnLayout from "./pokedexLayout/btnLayout"
 import GrayBoxes from "./pokedexLayout/grayBoxes"
+import { BrowserRouter } from 'react-router-dom';
 
 
 interface Props {
@@ -34,32 +35,35 @@ export default class Pokedex extends React.Component<Props, State> {
 
     render() {
         return (
-          
-            <PokemonProvider>
-                <div style={ mainWrap }> 
-                    <PokeDexSide> 
-                        <PokeDexTop bgImg={ leftTopBgImg } />
-                        <PokeDexCenter> 
-                            <PokeDexMainDisplay />
-                            <NavBtnWrap/>
+
+            <BrowserRouter>
+                <PokemonProvider>
+                    <div style={ mainWrap }> 
+                        <PokeDexSide> 
+                            <PokeDexTop bgImg={ leftTopBgImg } />
+                            <PokeDexCenter> 
+                                <PokeDexMainDisplay />
+                                <NavBtnWrap/>
+                            </PokeDexCenter>
+                            <PokeDexBottom> 
+                                <SearchInput />
+                            </PokeDexBottom>
+                        </PokeDexSide>
+            
+                        <PokeDexSide> 
+                            <PokeDexTop bgImg={ rightTopBgImg } />
+                            <PokeDexCenter>
+                                <PokeDexSecondDisplay />
+                            <BtnLayout />
                         </PokeDexCenter>
                         <PokeDexBottom> 
-                            <SearchInput />
+                            <GrayBoxes />
                         </PokeDexBottom>
-                    </PokeDexSide>
-        
-                    <PokeDexSide> 
-                        <PokeDexTop bgImg={ rightTopBgImg } />
-                        <PokeDexCenter>
-                            <PokeDexSecondDisplay />
-                        <BtnLayout />
-                      </PokeDexCenter>
-                    <PokeDexBottom> 
-                        <GrayBoxes />
-                    </PokeDexBottom>
-                    </PokeDexSide>
-                </div>
-            </PokemonProvider>
+                        </PokeDexSide>
+                    </div>
+                </PokemonProvider>
+            </BrowserRouter>
+            
         )
     }   
 }

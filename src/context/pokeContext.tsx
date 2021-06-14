@@ -3,7 +3,6 @@ import { createContext } from 'react'
 export interface PokemonOptions {
     allPokemons: PokemonIndex[]
     currentPokemon?: currentPokemon
-    /* setPokemon: () => void */
     pokemonFuncs: PokemonFuncs
 
 }
