@@ -14,12 +14,18 @@ export default function MainDisplayView(props: Props) {
     
     /* Försöker skapa funktion som highlightar current pokemon i listan. */
   
-        const currentName: string | undefined = props.currentPokemon?.pokemon.name    
+    const currentName: string | undefined = props.currentPokemon?.pokemon.name    
     
+    const somePokemons: () => PokemonIndex[] = () => {
+        const pokeIndex = props.currentPokemon?.index
+        
+            let somePokemonsArr = props.allPokemons.slice(pokeIndex, pokeIndex? pokeIndex + 6 : 6)
+            return somePokemonsArr
+    }
 
-
+    
    /* Med hjälp av currentPokemon skapa funktion för att highlighta vald pokemon */
-    const renderPokemon = props.allPokemons.map((pokemon) => {
+    const renderPokemon = somePokemons().map((pokemon) => {
         if(currentName === pokemon.name ) {
             return(
                 <p style={{...pokemonName, ...highLighted }}>{pokemon.name}</p>
