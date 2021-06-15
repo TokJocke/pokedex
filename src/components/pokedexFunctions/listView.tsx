@@ -41,7 +41,8 @@ export default function ListView(props: RouteComponentProps) {
 const pokemonName: React.CSSProperties = {
     marginTop: 0,
     marginBottom: "0.5em",
-    paddingLeft: "0.5em"
+    paddingLeft: "0.5em",
+    textTransform: "capitalize"
      
 }
 

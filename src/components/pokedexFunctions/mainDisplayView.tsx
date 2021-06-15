@@ -16,6 +16,7 @@ export default function MainDisplayView() {
     return (
 
             <div id={"mainDisplayView"} style={mainDisplay}>
+                {/* Routes för att skapa länk system i applikationen */}
                 <Switch>
                     <Route exact path={"/"} component={ListView} />
                     <Route path={"/detail/:pokeId"} component={DetailView} />
