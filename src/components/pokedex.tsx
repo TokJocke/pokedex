@@ -13,7 +13,7 @@ import PokemonProvider from '../context/pokeProvider';
 import BtnLayout from "./pokedexLayout/btnLayout"
 import GrayBoxes from "./pokedexLayout/grayBoxes"
 import { BrowserRouter } from 'react-router-dom';
-
+import { currentPokemon, PokeContext, PokemonIndex, PokemonFuncs, PokemonOptions } from "../context/pokeContext" 
 
 interface Props {
 
@@ -26,18 +26,18 @@ interface State {
 export default class Pokedex extends React.Component<Props, State> {
 
     constructor(props: Props) {
-        super(props)
-        this.state = {
+        super(props)     
+    }
 
-        }
-       
+    regionTest: (value: PokemonOptions) => void  = ({allPokemons, currentPokemon, pokemonFuncs}) => {
+        pokemonFuncs.setRegion()
     }
 
     render() {
+
         return (
 
             <BrowserRouter>
-                <PokemonProvider>
                     <div style={ mainWrap }> 
                         <PokeDexSide> 
                             <PokeDexTop bgImg={ leftTopBgImg } />
@@ -61,7 +61,6 @@ export default class Pokedex extends React.Component<Props, State> {
                         </PokeDexBottom>
                         </PokeDexSide>
                     </div>
-                </PokemonProvider>
             </BrowserRouter>
             
         )

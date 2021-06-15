@@ -23,6 +23,10 @@ export default function DetailView(props: RouteComponentProps<{pokeId: string}>)
     const renderDetailView: (value: PokemonOptions) => ReactNode  = ({allPokemons, currentPokemon, pokemonFuncs}) => {
         /* Funktion från Context provider som returnerar JSON från api med pokemon detaljer. Bör hitta någon form av state lösning */
         pokemonFuncs.getPokemonDetails(props.match.params.pokeId)
+        
+        //For testing func. 
+        pokemonFuncs.setRegion() 
+
         return (
             <h1>{props.match.params.pokeId}</h1>
             
