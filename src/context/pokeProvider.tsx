@@ -10,7 +10,16 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
         allPokemons: [],
         pokemonFuncs: {
             setPokemon: this.setPokemon.bind(this),
-        }
+            getPokemonDetails: this.getPokemonDetails.bind(this)
+        },
+    }
+    
+    /* Slutade i evighets loop när jag försökte sätta state här i. Hitta lösning!! */
+    async getPokemonDetails(id: string) {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        const jsonData = await response.json()
+        console.log("jsonData = ", jsonData)
+  
     }
 
     getPokemons = async () => {
@@ -36,7 +45,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
             this.setState({
                 currentPokemon: {
                     index: 0,
-                    pokemon: this.state.allPokemons[0]
+                    pokemon: this.state.allPokemons[0],
                 }
             }, () => {console.log(this.state.currentPokemon)})
         }else if (this.state.currentPokemon && param) {

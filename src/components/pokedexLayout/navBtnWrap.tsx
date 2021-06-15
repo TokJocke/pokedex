@@ -14,8 +14,16 @@ export default class NavBtnWrap extends React.Component {
         super(props)
     
     }
-    
-    
+    /* Tar ut id från currentpokemon.pokemon.url Måste finnas bättre lösning */
+    getIdFromString: (string: string | undefined) => string = (string) => {
+        if (string) {   
+            var match = string.substr(string.indexOf('pokemon/')).replace(/\D/g,'')
+            return match
+        }
+        else {
+            return "no id found"
+        }
+    }
 
     render() {
         return (
@@ -25,7 +33,8 @@ export default class NavBtnWrap extends React.Component {
                         ({pokemonFuncs, currentPokemon}) => {
                             return(
                                 <div style = { wrapStyle }>
-                                    <Link to={`/detail/${currentPokemon?.pokemon.name}`} style = { roundBtn } />
+                                    {/* Bestämmer url vid detailview */}
+                                    <Link to={`/detail/${this.getIdFromString(currentPokemon?.pokemon.url)}`} style = { roundBtn } />
                                     <div style = { thinBtnWrap } > 
                                         <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
                                         <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
