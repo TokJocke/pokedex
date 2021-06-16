@@ -10,10 +10,10 @@ export default function Layout() {
             {
                 ({currentRegion}) => (
                 
-                    <div style={{...layoutStyle, backgroundImage:`url(../assets/${currentRegion?.background}.jpg)`}}>
+                    <div style={{...layoutStyle, backgroundImage:currentRegion?.background}}>
                         <Pokedex />
                     </div>
-                      /*   backgroundImage: `url(${require('./path/img.png')})` */
+                      
                 )
             }
         </PokeContext.Consumer>   

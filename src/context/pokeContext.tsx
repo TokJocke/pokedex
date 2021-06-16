@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-
+import kantoImg from "../assets/kanto.jpg"
 export interface PokemonOptions {
     allPokemons: PokemonIndex[]
     currentPokemon?: currentPokemon
@@ -40,7 +40,7 @@ export interface RegionDetails {
 export const regions: PokedexRegions = {
     kanto: {
         name: "Kanto",
-        background: "kanto",
+        background: `url(${kantoImg})`,
         pokemonAmount: 151
     },
     johto: {
