@@ -20,8 +20,7 @@ interface Props {
 }
 
 interface State {
-/*     allPokemons: PokemonIndex[]
-    currentPokemon?: string */
+
 }
 export default class Pokedex extends React.Component<Props, State> {
 
