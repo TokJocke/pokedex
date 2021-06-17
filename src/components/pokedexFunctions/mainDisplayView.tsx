@@ -1,7 +1,7 @@
 import { List } from '@material-ui/core';
 import React, { CSSProperties, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { currentPokemon, PokeContext, PokemonIndex } from "../../context/pokeContext" 
+import {  PokeContext, PokemonIndex } from "../../context/pokeContext" 
 import DetailView from './detailView';
 import ListView from './listView';
 

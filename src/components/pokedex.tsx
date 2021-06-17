@@ -13,7 +13,7 @@ import PokemonProvider from '../context/pokeProvider';
 import BtnLayout from "./pokedexLayout/btnLayout"
 import GrayBoxes from "./pokedexLayout/grayBoxes"
 import { BrowserRouter } from 'react-router-dom';
-import { currentPokemon, PokeContext, PokemonIndex, PokemonFuncs, PokemonOptions } from "../context/pokeContext" 
+import { PokeContext, PokemonIndex, PokemonFuncs, PokemonOptions } from "../context/pokeContext" 
 
 interface Props {
 

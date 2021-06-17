@@ -1,34 +1,43 @@
 import * as React from 'react';
-import { currentPokemon, PokeContext, PokemonIndex, PokemonOptions } from '../../context/pokeContext';
+import { PokeContext, PokemonIndex, PokemonOptions } from '../../context/pokeContext';
 import { RouteComponentProps } from "react-router-dom"
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
+import { useContext } from 'react';
 
-
-/* lazySearch */
 
 
 export default function ListView(props: RouteComponentProps) {
-    
-    const renderPokemonList: (value: PokemonOptions) => ReactNode  = ({allPokemons, currentPokemon}) => {
+   
+    const pokemonDetails: PokemonOptions = useContext(PokeContext)
+    const resetPokemonDetails: (param: PokemonOptions) => void = pokemonDetails => {
+        if(pokemonDetails.pokemonData) {
+            pokemonDetails.pokemonData = undefined
+        }
+    }
+
+    const renderPokemonList: (value: PokemonOptions) => ReactNode  = ({allPokemons}) => {
+        
+        resetPokemonDetails(pokemonDetails)
+        
         if(!allPokemons.length) {
             return <p>is loading</p>
         }
         return allPokemons.map((pokemon) => {
-            if(currentPokemon?.pokemon.name === pokemon.name ) {
+            if(pokemon.isSelected) {
                 return(
                     <p style={{...pokemonName, ...highLighted }}>{pokemon.name}</p>
-                )
-            }
-            else {
-                return (
-                    <p style={{...pokemonName }}>{pokemon.name}</p>
-                )
-            }  
+                    )
+                }
+                else {
+                    return (
+                        <p style={{...pokemonName }}>{pokemon.name}</p>
+                        )
+                }  
         })
     }
-    
-    
+            
+            
     return (
         <PokeContext.Consumer>
             {renderPokemonList}

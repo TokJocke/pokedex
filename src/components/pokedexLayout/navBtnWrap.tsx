@@ -1,8 +1,7 @@
 import React, { CSSProperties } from 'react';
-import { PokeContext } from '../../context/pokeContext';
+import { PokeContext, PokemonIndex } from '../../context/pokeContext';
 import Dpad from "./dpad"
 import { Link } from "react-router-dom"
-
 
 interface Props {
     
@@ -14,44 +13,39 @@ export default class NavBtnWrap extends React.Component {
         super(props)
     
     }
-    /* Tar ut id från currentpokemon.pokemon.url Måste finnas bättre lösning */
-    /* Möjligt ha isselected? i stora lista */
-    getIdFromString: (string: string | undefined) => string = (string) => {
-        if (string) {   
-            var match = string.substr(string.indexOf('pokemon/')).replace(/\D/g,'')
-            return match
+   
+ 
+    findId: () => void = () => {
+        const foundPokemon = this.context.allPokemons.find((pokemon: PokemonIndex) => {
+            return pokemon.isSelected
+        })
+        if(foundPokemon) {
+            return foundPokemon.id
         }
-        else {
-            return "no id found"
-        }
-    }
+    }   
+
 
     render() {
-        return (
- 
-                <PokeContext.Consumer>    
-                    {
-                        ({pokemonFuncs, currentPokemon}) => {
-                            return(
-                                <div style = { wrapStyle }>
-                                    {/* Bestämmer url vid detailview */}
-                                    <Link to={`/detail/${this.getIdFromString(currentPokemon?.pokemon.url)}`} style = { roundBtn } />
-                                    <div style = { thinBtnWrap } > 
-                                        <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
-                                        <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
-                                    </div>
-                                    <Dpad setPokemon={pokemonFuncs["setPokemon"]} /> 
-                                </div>
-                            )    
-                        } 
-                    }
-                </PokeContext.Consumer>
-                
-    )
         
+        const pokemonLink: JSX.Element = <Link to={`/detail/${this.findId()}`} style = { roundBtn } />
+        const pokemonSpan: JSX.Element = <span style = { roundBtn } />
+     
+        return (
+            <div style = { wrapStyle }>
+                {/* Bestämmer url vid detailview */}
+                { this.context.allPokemons.length? pokemonLink : pokemonSpan  }
+                <div style = { thinBtnWrap } > 
+                    <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
+                    <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
+                </div>
+                <Dpad setPokemon={this.context.pokemonFuncs.setPokemon} /> 
+            </div>     
+        )   
     }
 
 }
+
+NavBtnWrap.contextType = PokeContext
 
 const wrapStyle: CSSProperties = {
     display: "flex",
