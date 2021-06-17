@@ -3,6 +3,7 @@ import { currentPokemon, PokeContext, PokemonIndex, PokemonOptions, PokemonFuncs
 import { RouteComponentProps } from "react-router-dom"
 import { ReactNode } from 'react';
 import PokemonProvider from '../../context/pokeProvider';
+import { CSSProperties } from 'react';
 
 
 /* Skapa nytt state i context för displayad pokemon */
@@ -23,8 +24,8 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
         if(this.context.currentPokemon && this.context.currentPokemon.pokemonData) {
             //console.log(this.context.pokemonFuncs["setRegion"])
             return (
-                <div>
-                <img src={this.context.currentPokemon.pokemonData.sprites.front_default} />
+                <div style = { sprite }>
+                <img style = { sprite } src={this.context.currentPokemon.pokemonData.sprites.front_default}/>
                 </div>
             );
         }
@@ -33,6 +34,9 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
     
 }
 
-
+export const sprite: CSSProperties = {
+    width: "100%",
+    height: "100%"
+}
 
 DetailView.contextType = PokeContext
