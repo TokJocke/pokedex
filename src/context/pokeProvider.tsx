@@ -18,17 +18,18 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
     
     /* Slutade i evighets loop när jag försökte sätta state här i. Hitta lösning!! */
     async getPokemonDetails(id: string) {
-        const response = "S" //await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        const jsonData = "s" //await response.json()
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        const jsonData = await response.json()
         console.log("jsonData = ", jsonData)
         if(this.state.currentPokemon) {
             this.setState({
                 currentPokemon: {
                     index: this.state.currentPokemon.index,
                     pokemon: this.state.currentPokemon.pokemon, 
+                    pokemonData: jsonData
                         
                 }
-            })
+            }, () => {console.log("state in getPokemonDetails() = ", this.state.currentPokemon)})
         }
     }
 

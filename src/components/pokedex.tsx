@@ -28,9 +28,6 @@ export default class Pokedex extends React.Component<Props, State> {
         super(props)     
     }
 
-/*     regionTest: (value: PokemonOptions) => void  = ({allPokemons, currentPokemon, pokemonFuncs}) => {
-        pokemonFuncs.setRegion()
-    } */
 
     render() {
 

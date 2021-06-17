@@ -15,6 +15,7 @@ export default class NavBtnWrap extends React.Component {
     
     }
     /* Tar ut id från currentpokemon.pokemon.url Måste finnas bättre lösning */
+    /* Möjligt ha isselected? i stora lista */
     getIdFromString: (string: string | undefined) => string = (string) => {
         if (string) {   
             var match = string.substr(string.indexOf('pokemon/')).replace(/\D/g,'')

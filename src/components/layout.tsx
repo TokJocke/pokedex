@@ -2,7 +2,6 @@ import * as React from 'react';
 import Pokedex from "./pokedex"
 import { PokeContext, PokemonOptions } from "../context/pokeContext"
 
-/* Kanske skapa en wrap här där bakgrundsbild ligger som tillåter mer anpassning för pokedex wrap */
 /* Kanske köra device size state här */
 export default function Layout() {
     return (
