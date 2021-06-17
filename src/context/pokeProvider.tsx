@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { PokeContext, PokemonOptions } from "./pokeContext"
+import { PokeContext, PokemonOptions, regions } from "./pokeContext"
 
 interface Props{}
 
@@ -10,8 +10,10 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
         allPokemons: [],
         pokemonFuncs: {
             setPokemon: this.setPokemon.bind(this),
-            getPokemonDetails: this.getPokemonDetails.bind(this)
+            getPokemonDetails: this.getPokemonDetails.bind(this),
+            setRegion: this.setRegion.bind(this)
         },
+
     }
     
     /* Slutade i evighets loop när jag försökte sätta state här i. Hitta lösning!! */
@@ -19,11 +21,20 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         const jsonData = await response.json()
         console.log("jsonData = ", jsonData)
-  
+        if(this.state.currentPokemon) {
+            this.setState({
+                currentPokemon: {
+                    index: this.state.currentPokemon.index,
+                    pokemon: this.state.currentPokemon.pokemon, 
+                    pokemonData: jsonData
+                        
+                }
+            }, () => {console.log("state in getPokemonDetails() = ", this.state.currentPokemon)})
+        }
     }
 
     getPokemons = async () => {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=60");
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
         const jsonData = await response.json();
         this.setState({allPokemons: jsonData.results})
         console.log(jsonData)
@@ -58,6 +69,14 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
                     }
                 }, () => {console.log(this.state.currentPokemon)} )
             }
+        }
+    }
+
+    setRegion() {
+        if(!this.state.currentRegion) {
+            this.setState({
+                currentRegion: regions.kanto
+            }, () => {console.log(this.state.currentRegion)})
         }
     }
 

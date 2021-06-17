@@ -1,41 +1,38 @@
 import * as React from 'react';
-import { currentPokemon, PokeContext, PokemonIndex, PokemonOptions } from '../../context/pokeContext';
+import { currentPokemon, PokeContext, PokemonIndex, PokemonOptions, PokemonFuncs } from '../../context/pokeContext';
 import { RouteComponentProps } from "react-router-dom"
 import { ReactNode } from 'react';
+import PokemonProvider from '../../context/pokeProvider';
 
 
+/* Skapa nytt state i context för displayad pokemon */
 
 
-
-export default function DetailView(props: RouteComponentProps<{pokeId: string}>) {
-    
-/*     React.useEffect(() => {
-        (async () => {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${props.match.params.pokeId}`)
-            const jsonData = await response.json()
-            console.log(jsonData)
-        })()
-        
-      
-    } ) */
+export default class DetailView extends React.Component<RouteComponentProps<{pokeId: string}> > {
 
 
-    const renderDetailView: (value: PokemonOptions) => ReactNode  = ({allPokemons, currentPokemon, pokemonFuncs}) => {
-        /* Funktion från Context provider som returnerar JSON från api med pokemon detaljer. Bör hitta någon form av state lösning */
-        pokemonFuncs.getPokemonDetails(props.match.params.pokeId)
-        return (
-            <h1>{props.match.params.pokeId}</h1>
-            
-        )
+    async componentDidMount() {
+        this.context.pokemonFuncs.setRegion() //for testing
+        await this.context.pokemonFuncs.getPokemonDetails(this.props.match.params.pokeId)
+        console.log("did mount")
     }
     
 
-    return (
-        <PokeContext.Consumer>
-            {renderDetailView}
-        </PokeContext.Consumer>
-    );
+    render() {
+        console.log(this.context.currentPokemon)
+        if(this.context.currentPokemon && this.context.currentPokemon.pokemonData) {
+            //console.log(this.context.pokemonFuncs["setRegion"])
+            return (
+                <div>
+                <img src={this.context.currentPokemon.pokemonData.sprites.front_default} />
+                </div>
+            );
+        }
+        return <p>not working</p>
+    }
+    
 }
 
 
 
+DetailView.contextType = PokeContext
