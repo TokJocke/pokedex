@@ -6,25 +6,24 @@ import sinnohImg from "../assets/sinnoh.jpg"
 
 export interface PokemonOptions {
     allPokemons: PokemonIndex[]
-    currentPokemon?: currentPokemon
+    pokemonData?: any
     pokemonFuncs: PokemonFuncs
     currentRegion?: RegionDetails
 }
 
-export interface currentPokemon {
-    index: number
-    pokemon: PokemonIndex 
-    pokemonData?: any 
-}
+/* export interface Pokemon {
+    
+}  */
 
 export interface PokemonIndex {
     name: string
-    url: string
+    id: string
+    isSelected?: boolean
 }
 
 /* Function interface */
 export interface PokemonFuncs {
-    setPokemon: (param?: number) => void
+    setPokemon: (param: number) => void
     getPokemonDetails: (id: string) => void
     setRegion: () => void
 }
@@ -69,9 +68,9 @@ export const regions: PokedexRegions = {
 
 export const PokeContext = createContext({
     allPokemons: [],
-    currentPokemon: undefined,
+    pokemonData: undefined,
     pokemonFuncs: {
-        setPokemon: (param?: number) => {},
+        setPokemon: (param: number) => {},
         getPokemonDetails: (id: string) => {},
         setRegion: () => {}
     },

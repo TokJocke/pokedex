@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { PokeContext, PokemonOptions, regions } from "./pokeContext"
+import { findRenderedDOMComponentWithTag } from "react-dom/test-utils"
+import { PokeContext, PokemonIndex, PokemonOptions, regions } from "./pokeContext"
 
 interface Props{}
 
@@ -16,30 +17,29 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
 
     }
     
-    /* Slutade i evighets loop när jag försökte sätta state här i. Hitta lösning!! */
     async getPokemonDetails(id: string) {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         const jsonData = await response.json()
         console.log("jsonData = ", jsonData)
-        if(this.state.currentPokemon) {
             this.setState({
-                currentPokemon: {
-                    index: this.state.currentPokemon.index,
-                    pokemon: this.state.currentPokemon.pokemon, 
-                    pokemonData: jsonData
-                        
-                }
-            }, () => {console.log("state in getPokemonDetails() = ", this.state.currentPokemon)})
-        }
+                pokemonData: jsonData 
+            }, () => {console.log("state in getPokemonDetails() = ", this.state.pokemonData)})
+        
     }
 
     getPokemons = async () => {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
         const jsonData = await response.json();
-        this.setState({allPokemons: jsonData.results})
         console.log(jsonData)
+        const allPokemons: PokemonIndex[] = jsonData.results.map((pokemon: {name: string, url: string}) => {
+            return {
+                name: pokemon.name,
+                id: pokemon.url.substr(pokemon.url.indexOf('pokemon/')).replace(/\D/g,'')
+            }
+        })
+        this.setState({allPokemons}, () => { this.setPokemon(0) })
         console.log("state in asyncFunc ", this.state.allPokemons)
-        this.setPokemon()
+
     };
 
     componentDidMount(){
@@ -48,11 +48,25 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
             this.getPokemons()
         }, 3000)
     }
+    
+    setPokemon(param: number) {
+        let myClonedArray = [...this.state.allPokemons]
+        const foundIndex = myClonedArray.findIndex((pokemon) => {
+            return pokemon.isSelected
+        })
+        if(foundIndex == -1) {
+            myClonedArray[0].isSelected = true
+        }else if (foundIndex + param >= 0 && foundIndex + param < myClonedArray.length){
+            myClonedArray[foundIndex + param].isSelected = true
+            myClonedArray[foundIndex].isSelected = false
+        }
+        this.setState({
+            allPokemons: myClonedArray
+        })
+    }
+        
 
-
-    setPokemon(param?: number) {
-       
-        if(!this.state.currentPokemon) {
+   /*      if(!this.state.currentPokemon) {
             this.setState({
                 currentPokemon: {
                     index: 0,
@@ -70,7 +84,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
                 }, () => {console.log(this.state.currentPokemon)} )
             }
         }
-    }
+    } */
 
     setRegion() {
         if(!this.state.currentRegion) {

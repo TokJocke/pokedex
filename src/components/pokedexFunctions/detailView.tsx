@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { currentPokemon, PokeContext, PokemonIndex, PokemonOptions, PokemonFuncs } from '../../context/pokeContext';
+import { PokeContext, PokemonIndex, PokemonOptions, PokemonFuncs } from '../../context/pokeContext';
 import { RouteComponentProps } from "react-router-dom"
 import { ReactNode } from 'react';
 import PokemonProvider from '../../context/pokeProvider';
@@ -20,12 +20,14 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
     
 
     render() {
-        console.log(this.context.currentPokemon)
-        if(this.context.currentPokemon && this.context.currentPokemon.pokemonData) {
+        console.log(this.context.pokemonData)
+        if(this.context.pokemonData) {
             //console.log(this.context.pokemonFuncs["setRegion"])
             return (
+
                 <div style = { sprite }>
-                <img style = { sprite } src={this.context.currentPokemon.pokemonData.sprites.front_default}/>
+                <img style = { sprite } src={this.context.pokemonData.sprites.front_default}/>
+
                 </div>
             );
         }
