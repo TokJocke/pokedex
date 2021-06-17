@@ -1,5 +1,9 @@
 import { createContext } from 'react'
 import kantoImg from "../assets/kanto.jpg"
+import johtoImg from "../assets/johto.jpg"
+import hoennImg from "../assets/hoenn.jpg"
+import sinnohImg from "../assets/sinnoh.jpg"
+
 export interface PokemonOptions {
     allPokemons: PokemonIndex[]
     currentPokemon?: currentPokemon
@@ -30,6 +34,7 @@ export interface PokedexRegions {
     kanto: RegionDetails
     johto: RegionDetails
     hoenn: RegionDetails
+    sinnoh: RegionDetails
 }
 export interface RegionDetails {
     name: string
@@ -45,14 +50,19 @@ export const regions: PokedexRegions = {
     },
     johto: {
         name: "Johto",
-        background: "background",
+        background: `url(${johtoImg})`,
         pokemonAmount: 100
     },
     hoenn: {
         name: "Hoenn",
-        background: "background",
+        background: `url(${hoennImg})`,
         pokemonAmount: 135
-    }
+    },
+    sinnoh: {
+        name: "Sinnoh",
+        background: `url(${sinnohImg})`,
+        pokemonAmount: 107
+    } 
 }
 
 
