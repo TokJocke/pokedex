@@ -25,7 +25,7 @@ export interface PokemonIndex {
 export interface PokemonFuncs {
     setPokemon: (param: number) => void
     getPokemonDetails: (id: string) => void
-    setRegion: () => void
+    setRegion: (region: string) => void
 }
 
 /* Pokemon regions data */

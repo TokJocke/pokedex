@@ -21,6 +21,7 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
 
     render() {
         console.log(this.context.pokemonData)
+        throw new Error("crash and burn")
         if(this.context.pokemonData) {
             //console.log(this.context.pokemonFuncs["setRegion"])
             return (

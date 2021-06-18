@@ -14,6 +14,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
             getPokemonDetails: this.getPokemonDetails.bind(this),
             setRegion: this.setRegion.bind(this)
         },
+        currentRegion: regions.kanto
 
     }
     
@@ -24,7 +25,6 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
             this.setState({
                 pokemonData: jsonData 
             }, () => {console.log("state in getPokemonDetails() = ", this.state.pokemonData)})
-        
     }
 
     getPokemons = async () => {
@@ -65,35 +65,20 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
         })
     }
         
-
-   /*      if(!this.state.currentPokemon) {
-            this.setState({
-                currentPokemon: {
-                    index: 0,
-                    pokemon: this.state.allPokemons[0],
-                }
-            }, () => {console.log(this.state.currentPokemon)})
-        }else if (this.state.currentPokemon && param) {
-            const newIndex: number = this.state.currentPokemon.index + param
-            if(newIndex >= 0){
-                this.setState({
-                    currentPokemon: {
-                        index: newIndex,
-                        pokemon: this.state.allPokemons[newIndex]
-                    }
-                }, () => {console.log(this.state.currentPokemon)} )
-            }
+    setRegion(region: string) {
+        if(region === "kanto") {
+            this.state.currentRegion = regions.kanto
+        }else if(region === "johto") {
+            this.state.currentRegion = regions.johto
         }
-    } */
 
-    setRegion() {
-        if(!this.state.currentRegion) {
+
+    /*     if(!this.state.currentRegion) {
             this.setState({
                 currentRegion: regions.kanto
             }, () => {console.log(this.state.currentRegion)})
-        }
+        } */
     }
-
 
     render() {
         return(

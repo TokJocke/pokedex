@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import {  PokeContext, PokemonIndex } from "../../context/pokeContext" 
 import DetailView from './detailView';
 import ListView from './listView';
-
+import ErrorBoundry from './errorBoundry';
 
 
 
@@ -14,15 +14,15 @@ export default function MainDisplayView() {
   
     
     return (
- 
-                    <div id={"mainDisplayView"} style={mainDisplay}>
-                        {/* Routes för att skapa länk system i applikationen */}
-                        <Switch>
-                            <Route exact path={"/"} component={ListView} />
-                            <Route path={"/detail/:pokeId"} component={DetailView} />
-                        </Switch>                
-                    </div>
-             
+        <ErrorBoundry>
+            <div id={"mainDisplayView"} style={mainDisplay}>
+                {/* Routes för att skapa länk system i applikationen */}
+                <Switch>
+                    <Route exact path={"/"} component={ListView} />
+                    <Route path={"/detail/:pokeId"} component={DetailView} />
+                </Switch>                
+            </div>
+        </ErrorBoundry>
          
     )
 }

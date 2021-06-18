@@ -9,6 +9,7 @@ import HomeSharpIcon from '@material-ui/icons/HomeSharp';
 import AccountBalanceSharpIcon from '@material-ui/icons/AccountBalanceSharp';
 import FilterHdrSharpIcon from '@material-ui/icons/FilterHdrSharp';
 import BeachAccessSharpIcon from '@material-ui/icons/BeachAccessSharp';
+import { PokeContext } from '../../context/pokeContext';
 
 interface Props {
 }
@@ -18,8 +19,15 @@ export default class BtnLayout extends React.Component {
     constructor(props: Props) {
         super(props)
     }
-
-
+    /* Fortsätt här och skapa ett sätt att byta region på onclick för knapparna nedanför */
+    setJohto = () => {
+        if(this.context.PokemonFuncs) {
+            this.context.PokemonFuncs.setRegion("johto")
+        }
+        else {
+            console.log("else")
+        }
+    }
 
 
     render() {
@@ -29,9 +37,11 @@ export default class BtnLayout extends React.Component {
             <div style = { btnBlue }>
             <ButtonGroup>
                 <Button 
+                    onClick={ () => this.context.pokemonFuncs.setRegion("kanto")}
                     startIcon={<HomeSharpIcon/>} style={blueButton} 
-                />
+                    />
                 <Button 
+                    onClick={ this.setJohto }
                     startIcon={<FilterHdrSharpIcon/>} style={blueButton} 
                 />
                 <Button 
@@ -65,6 +75,8 @@ export default class BtnLayout extends React.Component {
     }
 }
       
+BtnLayout.contextType = PokeContext
+
 const blueButton: CSSProperties = {
     backgroundColor: "#28ABFD",
     width: "50px",
