@@ -17,7 +17,7 @@ export default function ListView(props: RouteComponentProps) {
     }
 
     const renderPokemonList: (value: PokemonOptions) => ReactNode  = ({allPokemons}) => {
-        
+
         resetPokemonDetails(pokemonDetails)
         
         if(!allPokemons.length) {

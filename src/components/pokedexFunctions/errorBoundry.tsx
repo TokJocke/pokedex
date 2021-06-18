@@ -24,7 +24,7 @@ export default class ErrorBoundry extends React.Component<Props, State> {
 
     render() {
         if(this.state.hasError) {
-            return <p>Fail to execute</p>
+            return <p>Something went wrong, maybe the pokemons slipped away</p>
         }
         return this.props.children
     }

@@ -65,7 +65,6 @@ export const regions: PokedexRegions = {
 }
 
 
-
 export const PokeContext = createContext({
     allPokemons: [],
     pokemonData: undefined,
