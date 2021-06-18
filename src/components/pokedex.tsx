@@ -14,19 +14,54 @@ import BtnLayout from "./pokedexLayout/btnLayout"
 import GrayBoxes from "./pokedexLayout/grayBoxes"
 import { BrowserRouter } from 'react-router-dom';
 import { PokeContext, PokemonIndex, PokemonFuncs, PokemonOptions } from "../context/pokeContext" 
+type Device = {
+    isMobile: boolean,
+    isTablet: boolean,
+    isDesktop: boolean
+}
 
 interface Props {
-
+    
 }
 
 interface State {
-
+    device: Device
 }
 export default class Pokedex extends React.Component<Props, State> {
 
     constructor(props: Props) {
-        super(props)     
+        super(props)
+        this.state = {device: this.updateDevice()
+        }
     }
+
+    componentDidMount() {
+        window.addEventListener("resize", () => {
+            const currentDevice = this.updateDevice()
+            this.setState({
+                device: currentDevice
+            })
+        })
+    }
+    
+    updateDevice = () => {
+        const width = window.innerWidth
+        const currentDevice: Device = {
+            isMobile: false,
+            isTablet: false,
+            isDesktop: false
+        }
+
+        if(width <= 480) {
+            currentDevice.isMobile = true;
+        } else if (width > 480 && width <= 768) {
+            currentDevice.isTablet = true;
+    } else {
+        currentDevice.isDesktop = true;
+    }
+
+    return currentDevice
+}
 
 
     render() {
@@ -34,7 +69,7 @@ export default class Pokedex extends React.Component<Props, State> {
         return (
 
             <BrowserRouter>
-                    <div style={ mainWrap }> 
+                    <div style={{...mainWrap, flexDirection: this.state.device.isMobile ? "column" : this.state.device.isTablet ? "row" : "row"}  }> 
                         <PokeDexSide> 
                             <PokeDexTop bgImg={ leftTopBgImg } />
                             <PokeDexCenter> 
@@ -68,7 +103,6 @@ export const mainWrap: CSSProperties = {
     display: "flex",
     boxShadow: "0 0 40px 20px",
     justifyContent: "center",
-   /*  flexDirection: "column" */ //Should be in mobile device
 }
 
 export const leftTopBgImg: CSSProperties = {
