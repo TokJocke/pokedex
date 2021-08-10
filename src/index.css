@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-#mainDisplayView::-webkit-scrollbar {
+#mainDisplayView::-webkit-scrollbar, #secondDisplayView::-webkit-scrollbar {
   display: none;
 }
 

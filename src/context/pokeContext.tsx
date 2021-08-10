@@ -8,7 +8,8 @@ export interface PokemonOptions {
     allPokemons: PokemonIndex[]
     pokemonData?: any
     pokemonFuncs: PokemonFuncs
-    currentRegion?: RegionDetails
+    currentRegion?: RegionDetails 
+    PokedexRegions: RegionDetails[]
 }
 
 /* export interface Pokemon {
@@ -25,23 +26,25 @@ export interface PokemonIndex {
 export interface PokemonFuncs {
     setPokemon: (param: number) => void
     getPokemonDetails: (id: string) => void
-    setRegion: (region: string) => void
+    setRegion: (param: number) => void
 }
 
 /* Pokemon regions data */
-export interface PokedexRegions { 
+/* export interface PokedexRegions { 
     kanto: RegionDetails
     johto: RegionDetails
     hoenn: RegionDetails
     sinnoh: RegionDetails
-}
+} */
 export interface RegionDetails {
     name: string
     background: string
     pokemonAmount: number
+    offset: number
+    isSelected?: boolean
 }
 
-export const regions: PokedexRegions = {
+/* export const regions: PokedexRegions = {
     kanto: {
         name: "Kanto",
         background: `url(${kantoImg})`,
@@ -62,7 +65,7 @@ export const regions: PokedexRegions = {
         background: `url(${sinnohImg})`,
         pokemonAmount: 107
     } 
-}
+} */
 
 
 export const PokeContext = createContext({
@@ -71,8 +74,9 @@ export const PokeContext = createContext({
     pokemonFuncs: {
         setPokemon: (param: number) => {},
         getPokemonDetails: (id: string) => {},
-        setRegion: () => {}
+        setRegion: (param: number) => {},
     },
-    allPokedexRegions: [],
-    currentRegion: undefined
+    currentRegion: undefined,
+    PokedexRegions: [],
+        
 } as PokemonOptions)

@@ -13,7 +13,7 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
 
 
     async componentDidMount() {
-        this.context.pokemonFuncs.setRegion() //for testing
+       // this.context.pokemonFuncs.setRegion() //for testing
         await this.context.pokemonFuncs.getPokemonDetails(this.props.match.params.pokeId)
         console.log("did mount")
     }
@@ -22,7 +22,7 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
     render() {
         console.log(this.context.pokemonData)
         if(this.context.pokemonData) {
-            //console.log(this.context.pokemonFuncs["setRegion"])
+         //   console.log(this.context)
             return (
 
                 <div style = { sprite }>

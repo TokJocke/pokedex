@@ -26,14 +26,14 @@ export default class NavBtnWrap extends React.Component {
 
 
     render() {
-        
-        const pokemonLink: JSX.Element = <Link to={`/detail/${this.findId()}`} style = { roundBtn } />
+                                                  
+        const pokemonLink: JSX.Element = <Link to={`${this.context.currentRegion?.name}/detail/${this.findId()}`} style = { roundBtn } />
         const pokemonSpan: JSX.Element = <span style = { roundBtn } />
      
         return (
             <div style = { wrapStyle }>
                 {/* Bestämmer url vid detailview */}
-                { this.context.allPokemons.length? pokemonLink : pokemonSpan  }
+                { this.context.allPokemons.length? pokemonLink : pokemonSpan  } {/* Renderar knapp med onclick om listan finns annars knapp utan funktion */}
                 <div style = { thinBtnWrap } > 
                     <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
                     <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>

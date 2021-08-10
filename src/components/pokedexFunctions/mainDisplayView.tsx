@@ -19,10 +19,10 @@ export default function MainDisplayView() {
                 {/* Routes för att skapa länk system i applikationen */}
                 <Switch>
                 
-                    <Route exact path={"/"} component={ListView} />
+                    <Route exact path={"/"} component={ListView} />      {/* trying to add dynamic region to url */}
                 
                     <ErrorBoundry>
-                        <Route path={"/detail/:pokeId"} component={DetailView} />
+                        <Route path={"/:region/detail/:pokeId"} component={DetailView} />
                     </ErrorBoundry>
                
                 </Switch>                

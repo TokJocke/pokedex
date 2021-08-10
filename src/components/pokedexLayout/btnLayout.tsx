@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import * as React from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -9,7 +9,8 @@ import HomeSharpIcon from '@material-ui/icons/HomeSharp';
 import AccountBalanceSharpIcon from '@material-ui/icons/AccountBalanceSharp';
 import FilterHdrSharpIcon from '@material-ui/icons/FilterHdrSharp';
 import BeachAccessSharpIcon from '@material-ui/icons/BeachAccessSharp';
-import { PokeContext } from '../../context/pokeContext';
+import { PokeContext, RegionDetails } from '../../context/pokeContext';
+import { CSSProperties } from 'react';
 
 interface Props {
 }
@@ -19,34 +20,32 @@ export default class BtnLayout extends React.Component {
     constructor(props: Props) {
         super(props)
     }
-    /* Fortsätt här och skapa ett sätt att byta region på onclick för knapparna nedanför */
-    setJohto = () => {
-        if(this.context.PokemonFuncs) {
-            this.context.PokemonFuncs.setRegion("johto")
-        }
-        else {
-            console.log("else")
-        }
-    }
 
+    
+    /* Fortsätt här och skapa ett sätt att byta region på onclick för knapparna nedanför */
+    /* Lägg till region i url på samma sätt som pokemon */
+
+ 
+ 
 
     render() {
+        console.log("inbtnLay =", this.context )
         return (
         <div style = {btnFlexbox}>
 
             <div style = { btnBlue }>
             <ButtonGroup>
                 <Button 
-                    onClick={ () => this.context.pokemonFuncs.setRegion("kanto")}
+                   
                     startIcon={<HomeSharpIcon/>} style={blueButton} 
                     />
                 <Button 
-                    onClick={ this.setJohto }
                     startIcon={<FilterHdrSharpIcon/>} style={blueButton} 
                 />
                 <Button 
                     startIcon={<BeachAccessSharpIcon/>} style={blueButton} 
                 />
+                
                 <Button 
                     startIcon={<AccountBalanceSharpIcon/>} style={blueButton} 
                 />
@@ -63,9 +62,11 @@ export default class BtnLayout extends React.Component {
             <div style = { btnWhite }>
             <ButtonGroup>
             <Button
+                onClick={ () => this.context.pokemonFuncs.setRegion(+1) } 
                 startIcon={<ArrowDownwardIcon/>} style={whiteButton}
             />
             <Button 
+                onClick={ () => this.context.pokemonFuncs.setRegion(-1) }
                 startIcon={<ArrowUpwardIcon/>} style={whiteButton}
             />
             </ButtonGroup>
