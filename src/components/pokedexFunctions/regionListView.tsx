@@ -2,24 +2,25 @@ import * as React from 'react';
 import { PokeContext, PokemonIndex, PokemonOptions } from '../../context/pokeContext';
 import { RouteComponentProps } from "react-router-dom"
 import { render } from '@testing-library/react';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useContext } from 'react';
 
 
 
 export default function RegionListView(props: RouteComponentProps) {
    
-
     const pokemonDetails: PokemonOptions = useContext(PokeContext)
-   
+    useEffect(() => {
+        if(!pokemonDetails.currentRegion) {
+            pokemonDetails.pokemonFuncs.setRegion(0)
+        }   
+    });
+
     const renderRegionList: () => ReactNode = () => {
         const regions = pokemonDetails.PokedexRegions
-       
         if(!regions.length) {
             return <p>No regions found..</p>
         }
-
-
         return regions.map((region) => {
             if(region.isSelected) {
                 return(

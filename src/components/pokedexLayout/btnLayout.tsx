@@ -61,8 +61,8 @@ export default class BtnLayout extends React.Component {
 
             <div style = { btnWhite }>
             <ButtonGroup>
-            <Button
-                onClick={ () => this.context.pokemonFuncs.setRegion(+1) } 
+            <Button             /* Fortsätt här  */
+                onClick={ () => this.context.pokemonData? console.log("WÖÖÖRKING YEEEHA") : this.context.pokemonFuncs.setRegion(+1) } 
                 startIcon={<ArrowDownwardIcon/>} style={whiteButton}
             />
             <Button 

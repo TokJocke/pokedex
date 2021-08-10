@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { findRenderedDOMComponentWithTag } from "react-dom/test-utils"
 import { PokeContext, /* PokedexRegions, */ PokemonIndex, PokemonOptions, } from "./pokeContext"
-
+import { RouteComponentProps } from "react-router-dom"
 import kantoImg from "../assets/kanto.jpg"
 import johtoImg from "../assets/johto.jpg"
 import hoennImg from "../assets/hoenn.jpg"
@@ -9,8 +9,7 @@ import sinnohImg from "../assets/sinnoh.jpg"
 
 interface Props{}
 
-
-export default class PokemonProvider extends Component<Props, PokemonOptions> {
+export default class PokemonProvider extends Component<Props, PokemonOptions>   {
 
     state: PokemonOptions = {
         allPokemons: [],
@@ -19,7 +18,6 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
             getPokemonDetails: this.getPokemonDetails.bind(this),
             setRegion: this.setRegion.bind(this),
         },
-       /*  currentRegion: undefined, */
         PokedexRegions: [
             {
                 name: "kanto",
@@ -58,7 +56,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
                 pokemonData: jsonData 
             }, () => {console.log("state in getPokemonDetails() = ", this.state.pokemonData)})
     }
-    /* fetch limit & offset should sync with region.isSelected, if !region.isSelected && !regionInUrl select kanto */
+
     getPokemons = async () => {
         console.log("inGetPokemons ", this.state.currentRegion)
 
@@ -78,8 +76,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
 
     componentDidMount(){
         setTimeout(() => {/* Kallar på api när component har laddats, timeout for testing, remove when done */
-            this.setRegion(0)
-            console.log(this.state.PokedexRegions)
+         //   this.setRegion(0)
         }, 3000)
  
     }
@@ -100,40 +97,42 @@ export default class PokemonProvider extends Component<Props, PokemonOptions> {
         })
     }
 
-    setRegion(param: number) {
-        console.log("running set region")
-        if(window.location.pathname == "/:region/detail/:" ) { /* Testing */
-            console.log("path IF worked", window.location.hash)
+    setRegion(param: number, region?: string) {
+        if(region) {
+            this.state.PokedexRegions.find((foundRegion) =>{
+                if(foundRegion.name === region) {
+                    foundRegion.isSelected = true
+                    this.setState({                                                                         
+                        currentRegion: foundRegion
+                    },() => {this.getPokemons()})
+                }
+            })
+          
         }
-
-
-        let myClonedArray = [...this.state.PokedexRegions]
-        const foundIndex = myClonedArray.findIndex((region) => {
-            return region.isSelected
-        })
-        if(foundIndex == -1) {
-            myClonedArray[0].isSelected = true
-           // if (window.location.pathname.length <= 1) {
-                this.setState({                                                                         
-                    currentRegion: this.state.PokedexRegions[0]
-                }, () => {this.getPokemons()})
-                console.log("HEEERE", this.state.currentRegion)
-            //}
-        }else if (foundIndex + param >= 0 && foundIndex + param < myClonedArray.length) {
-            myClonedArray[foundIndex + param].isSelected = true
-            myClonedArray[foundIndex].isSelected = false
-           // if (window.location.pathname.length <= 1) {
-                this.setState({
-                    currentRegion: this.state.PokedexRegions[foundIndex + param]
-                }, () => {this.getPokemons()})
-                console.log("HEEERE", this.state.currentRegion)
-           // }
+        else {
+            let myClonedArray = [...this.state.PokedexRegions]
+            const foundIndex = myClonedArray.findIndex((region) => {
+                return region.isSelected
+            })
+            if(foundIndex == -1) {
+                myClonedArray[0].isSelected = true
+                    this.setState({                                                                         
+                        currentRegion: this.state.PokedexRegions[0]
+                    }, () => {this.getPokemons()})
+           
+            }else if (foundIndex + param >= 0 && foundIndex + param < myClonedArray.length) {
+                myClonedArray[foundIndex + param].isSelected = true
+                myClonedArray[foundIndex].isSelected = false
+                    this.setState({
+                        currentRegion: this.state.PokedexRegions[foundIndex + param]
+                    }, () => {this.getPokemons()})
+            
+            }
+            this.setState({
+                PokedexRegions: myClonedArray,
+            })
+        // this.getPokemons() /* För att ladda nya pokemon när region.isSelected ändras */
         }
-        this.setState({
-            PokedexRegions: myClonedArray,
-        })
-       // console.log(this.state.PokedexRegions)
-       // this.getPokemons() /* För att ladda nya pokemon när region.isSelected ändras */
     }
 
 
