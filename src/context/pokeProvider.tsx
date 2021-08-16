@@ -47,14 +47,21 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
             } 
         ],
     }
-    
-    async getPokemonDetails(id: string) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        const jsonData = await response.json()
-        console.log("jsonData = ", jsonData)
+    /* Use id = 0 to reset details */
+    async getPokemonDetails(id: number) {
+        if(id <= 0) {
             this.setState({
-                pokemonData: jsonData 
-            }, () => {console.log("state in getPokemonDetails() = ", this.state.pokemonData)})
+                pokemonData: undefined
+            })
+        }
+        else {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            const jsonData = await response.json()
+            console.log("jsonData = ", jsonData)
+                this.setState({
+                    pokemonData: jsonData 
+                }, () => {console.log("state in getPokemonDetails() = ", this.state.pokemonData)})
+        }
     }
 
     getPokemons = async () => {
@@ -81,7 +88,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
  
     }
     
-    setPokemon(param: number) {
+    setPokemon(param: number) { /* Vid mån av tid lägg till funktion som väljer pokemon från url om ingen är selected och sidan /detail refreshas  */
         let myClonedArray = [...this.state.allPokemons]
         const foundIndex = myClonedArray.findIndex((pokemon) => {
             return pokemon.isSelected
@@ -135,7 +142,9 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
         }
     }
 
-
+    pokemonDetailsList() {
+        
+    }
      
 
 

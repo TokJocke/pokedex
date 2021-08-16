@@ -36,7 +36,7 @@ export default class BtnLayout extends React.Component {
             <div style = { btnBlue }>
             <ButtonGroup>
                 <Button 
-                   
+                    onClick={() => console.log(this.context.pokemonData)}
                     startIcon={<HomeSharpIcon/>} style={blueButton} 
                     />
                 <Button 

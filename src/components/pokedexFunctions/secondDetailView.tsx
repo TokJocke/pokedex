@@ -9,7 +9,7 @@ import { CSSProperties } from 'react';
 /* Skapa nytt state i context för displayad pokemon */
 
 
-export default class SecondDetailView extends React.Component<RouteComponentProps<{region: string}> > {
+export default class SecondDetailView extends React.Component<RouteComponentProps<{region: string}>> {
 
 
     async componentDidMount() {

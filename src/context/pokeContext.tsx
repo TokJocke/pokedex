@@ -22,20 +22,15 @@ export interface PokemonIndex {
     isSelected?: boolean
 }
 
+
 /* Function interface */
 export interface PokemonFuncs {
     setPokemon: (param: number) => void
-    getPokemonDetails: (id: string) => void
+    getPokemonDetails: (id: number) => void
     setRegion: (param: number, region?: string) => void
 }
 
-/* Pokemon regions data */
-/* export interface PokedexRegions { 
-    kanto: RegionDetails
-    johto: RegionDetails
-    hoenn: RegionDetails
-    sinnoh: RegionDetails
-} */
+
 export interface RegionDetails {
     name: string
     background: string
@@ -44,36 +39,13 @@ export interface RegionDetails {
     isSelected?: boolean
 }
 
-/* export const regions: PokedexRegions = {
-    kanto: {
-        name: "Kanto",
-        background: `url(${kantoImg})`,
-        pokemonAmount: 151
-    },
-    johto: {
-        name: "Johto",
-        background: `url(${johtoImg})`,
-        pokemonAmount: 100
-    },
-    hoenn: {
-        name: "Hoenn",
-        background: `url(${hoennImg})`,
-        pokemonAmount: 135
-    },
-    sinnoh: {
-        name: "Sinnoh",
-        background: `url(${sinnohImg})`,
-        pokemonAmount: 107
-    } 
-} */
-
 
 export const PokeContext = createContext({
     allPokemons: [],
     pokemonData: undefined,
     pokemonFuncs: {
         setPokemon: (param: number) => {},
-        getPokemonDetails: (id: string) => {},
+        getPokemonDetails: (id: number) => {},
         setRegion: (param: number) => {},
     },
     currentRegion: undefined,

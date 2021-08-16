@@ -11,6 +11,8 @@ export default function RegionListView(props: RouteComponentProps) {
    
     const pokemonDetails: PokemonOptions = useContext(PokeContext)
     useEffect(() => {
+        console.log("useEffect in regionlistview")
+
         if(!pokemonDetails.currentRegion) {
             pokemonDetails.pokemonFuncs.setRegion(0)
         }   
