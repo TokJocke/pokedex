@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { PokeContext } from '../../context/pokeContext';
+import ErrorBoundry from '../pokedexFunctions/errorBoundry';
 import MainDisplayView from "../pokedexFunctions/mainDisplayView"
 
 
@@ -35,8 +36,9 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
                 <div style = {pokeDexDisplay}>
                     
                        
-                            
-                                <MainDisplayView /> 
+                    <ErrorBoundry>
+                        <MainDisplayView /> 
+                    </ErrorBoundry>            
                         
                     
                 </div>

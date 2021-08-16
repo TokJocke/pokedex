@@ -15,7 +15,7 @@ export default class Dpad extends React.Component<Props> {
 
     }
 
-
+    /* Add conditional rendering. if detailview !undefined then change dpad to unable to browse pokemon when list not showing */
     render() {
         return (
             <div style = {center}>

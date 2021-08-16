@@ -14,7 +14,6 @@ import BtnLayout from "./pokedexLayout/btnLayout"
 import GrayBoxes from "./pokedexLayout/grayBoxes"
 import { BrowserRouter } from 'react-router-dom';
 import { PokeContext, PokemonIndex, PokemonFuncs, PokemonOptions } from "../context/pokeContext" 
-
 interface Props {
 
 }
@@ -28,12 +27,12 @@ export default class Pokedex extends React.Component<Props, State> {
         super(props)     
     }
 
-
+    
     render() {
-
+        
         return (
-
-            <BrowserRouter>
+            
+            <BrowserRouter >
                     <div style={ mainWrap }> 
                         <PokeDexSide> 
                             <PokeDexTop bgImg={ leftTopBgImg } />

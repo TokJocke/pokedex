@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { PokeContext, PokemonIndex } from '../../context/pokeContext';
 import Dpad from "./dpad"
 import { Link } from "react-router-dom"
-
+import { createBrowserHistory } from "history";
 interface Props {
     
 }
@@ -23,17 +23,29 @@ export default class NavBtnWrap extends React.Component {
             return foundPokemon.id
         }
     }   
+    
+    selectBtn: () => JSX.Element = () => {
+        if(this.context.pokemonData !== undefined) {
+            return <span  onClick={ () => console.log("elzzzzzzzzz") } style={roundBtn}></span>
+        }
+        else {
+            return <Link to={`${this.context.currentRegion?.name}/detail/${this.findId()}`} style = { roundBtn } />
+
+        }
+    }
 
 
     render() {
         
-        const pokemonLink: JSX.Element = <Link to={`/detail/${this.findId()}`} style = { roundBtn } />
+        console.log(createBrowserHistory())
+        
+        const pokemonLink: JSX.Element = <Link to={`${this.context.currentRegion?.name}/detail/${this.findId()}`} style = { roundBtn } />
         const pokemonSpan: JSX.Element = <span style = { roundBtn } />
      
         return (
             <div style = { wrapStyle }>
                 {/* Bestämmer url vid detailview */}
-                { this.context.allPokemons.length? pokemonLink : pokemonSpan  }
+                { this.context.allPokemons.length? this.selectBtn() : pokemonSpan  } {/* Renderar knapp med onclick om listan finns annars knapp utan funktion */}
                 <div style = { thinBtnWrap } > 
                     <div style = { {...thinLineBtn, backgroundColor: "red"} }/>
                     <div style = { {...thinLineBtn, backgroundColor: "cyan"} }/>
