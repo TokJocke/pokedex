@@ -6,9 +6,3 @@ Get started:
 3. When everything is installed you'll be able to run "npm start" to use the application.
 
 This project is built strictly with typescript and react.js.
-
-
-*****Fråga victor*****
-
-* Få in backgrundsbild i layout.tsx rad 13
-* Spara pokemonDetails som state utan att fastna i evighets loop
