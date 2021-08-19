@@ -1,26 +1,33 @@
-import React, { CSSProperties, Component } from 'react';
+import React, { CSSProperties, Component, useState } from 'react';
 
-interface Props {
+export default function Blink(props: any) {
+
+
+const [blinker, setBlinker] = useState(false) 
+
+
+const blinkers = () => {
+
+  setTimeout(() => {
+    setBlinker(!blinker)
+  }, 1500);
+
+  return (
+    <div style = { thinBtnWrap } > 
+      <div style = { {...thinLineBtn, backgroundColor: blinker? 'red' : "cyan" } }/>
+      <div style = { {...thinLineBtnTwo, backgroundColor: blinker? 'cyan' : "red" } }/>
+    </div>
+  )
+
 }
 
-export default class Blink extends Component {
-    constructor(props: Props) {
-        super(props)
 
-    }
-   
 
-    render(){
-        return (
-          <div style = { thinBtnWrap } > 
-          <div style = { {...thinLineBtn, backgroundColor: 'red' } }/>
-          <div style = { {...thinLineBtnTwo, backgroundColor: 'cyan' } }/>
-      </div>
-      )
-    }
+return blinkers()
 
 }
-
+  
+  
 
 
 export const thinBtnWrap: CSSProperties = {
