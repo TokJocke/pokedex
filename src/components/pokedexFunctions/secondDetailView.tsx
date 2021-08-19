@@ -6,9 +6,6 @@ import PokemonProvider from '../../context/pokeProvider';
 import { CSSProperties } from 'react';
 
 
-/* Skapa nytt state i context för displayad pokemon */
-
-
 export default class SecondDetailView extends React.Component<RouteComponentProps<{region: string}>> {
 
 
@@ -23,16 +20,19 @@ export default class SecondDetailView extends React.Component<RouteComponentProp
 
     render() {
         if(this.context.pokemonData) {
+            console.log(this.context.pokemonData)
             return (
-
                 <div style = { wrapp }>
                     <h1 style={title}>{this.context.pokemonData.name}</h1>
-                    <ul style={ulStyle}>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
+                    {/* {this.renderStatsAndMoves()} */}
+                    <div style={statsWrap}>
+                        <p style={statStyle}> HP : {this.context.pokemonData.stats[0].base_stat}</p>
+                        <p style={statStyle}> ATK : {this.context.pokemonData.stats[1].base_stat}</p>
+                        <p style={statStyle}> DEF : {this.context.pokemonData.stats[2].base_stat}</p>
+                        <p style={statStyle}> S-ATK : {this.context.pokemonData.stats[3].base_stat}</p>
+                        <p style={statStyle}> S-DEF : {this.context.pokemonData.stats[4].base_stat}</p>
+                        <p style={statStyle}> SPD : {this.context.pokemonData.stats[5].base_stat}</p>
+                    </div>
                 </div>
             );
         }
@@ -43,7 +43,10 @@ export default class SecondDetailView extends React.Component<RouteComponentProp
 
 export const wrapp: CSSProperties = {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
 }
 
 export const title: CSSProperties = {
@@ -58,4 +61,59 @@ export const ulStyle: CSSProperties = {
     margin: "0"
 }
 
-SecondDetailView.contextType = PokeContext
+const normalText: React.CSSProperties = {
+    marginTop: 0,
+    marginBottom: "0.5em",
+    paddingLeft: "0.5em",
+    textTransform: "capitalize"
+     
+}
+
+const highLighted: React.CSSProperties = {
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    fontWeight: "bold",
+    borderRadius: "5px"
+}
+
+const statsWrap: React.CSSProperties = {
+    display: 'flex',
+    flexWrap: "wrap",
+    flexDirection: "row",
+}
+
+const statStyle: React.CSSProperties = {
+    width: "50%",
+    fontSize: "1.2em",
+    margin: 0,
+    textAlign: "center"
+}
+
+SecondDetailView.contextType = PokeContext  
+
+
+
+
+
+
+
+
+/*     renderStatsAndMoves: () => ReactNode = () => {
+        const statsAndMoves = this.context.statsAndMoves
+        if(!statsAndMoves) {
+            return <p>No moves or stats found..</p>
+        }
+        return statsAndMoves.map((statAndMove: any) => {
+            if(statAndMove.isSelected) {
+                return(
+                    <div>
+                        <p style={{...normalText, ...highLighted}}>{statAndMove.title}</p>
+                    </div>
+                )
+            }
+            else {
+                return (
+                    <p style={{...normalText}}>{statAndMove.title}</p>
+                )
+            }    
+        })
+    }  */

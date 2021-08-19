@@ -17,6 +17,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
             setPokemon: this.setPokemon.bind(this),
             getPokemonDetails: this.getPokemonDetails.bind(this),
             setRegion: this.setRegion.bind(this),
+            statsOrMoves: this.statsOrMoves.bind(this)
         },
         PokedexRegions: [
             {
@@ -59,8 +60,44 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
             const jsonData = await response.json()
             console.log("jsonData = ", jsonData)
                 this.setState({
-                    pokemonData: jsonData 
-                }, () => {console.log("state in getPokemonDetails() = ", this.state.pokemonData)})
+                    pokemonData: {...jsonData, ...{isSelected: false}} 
+                }, () => {this.getStatsAndMoves()})
+        }
+    }
+    /* Lägg till title på båda objekten och loopa ut title i secondDetailView, skapa funktion för att välja "isSelected" och koppla till knapp i navBtnWrap för att utföra något */
+    getStatsAndMoves() { 
+        if(this.state.pokemonData) {
+            const stats: {stat: string, baseValue: number, isSelected: Boolean}[]= this.state.pokemonData.stats.map((stat: any) => {
+                return {
+                    stat: stat.stat.name,
+                    baseValue: stat.base_stat,
+                    isSelected: false
+                }
+            })
+            console.log(stats)
+            const moves: {move: string, isSelected: Boolean}[] = this.state.pokemonData.moves.map((move: {move: any}) => {
+                return {
+                    move: move.move.name,
+                    isSelected: false
+                }
+            })
+            console.log(moves)
+            this.setState({
+                statsAndMoves: [
+                    
+                    {
+                        title: "Moves",
+                        movesList: moves,
+                        isSelected: true
+                    },
+                    {
+                        title: "Stats",
+                        statsList: stats,
+                        isSelected: false
+                    }
+                    
+                ]
+            }, () => console.log(this.state.statsAndMoves))
         }
     }
 
@@ -87,6 +124,13 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
         }, 3000)
  
     }
+    
+    /* Select functions */
+    /* Utvecklings ide, gör setPokemon, setRegion och statsOrMoves till en funktion som enbart returnerar resultatet istället för setState och på så sätt
+    kunna använda resultatet senare för att sätta state och bestämma vilken data som manipuleras i parametrar till funktion. 
+    
+    Så istället för this.setState kör "return myClonedArray" för att senare kunna göra något liknande setState({allPokemons: mySet(state.allPokemons)})
+    */
     
     setPokemon(param: number) { /* Vid mån av tid lägg till funktion som väljer pokemon från url om ingen är selected och sidan /detail refreshas  */
         let myClonedArray = [...this.state.allPokemons]
@@ -138,13 +182,26 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
             this.setState({
                 PokedexRegions: myClonedArray,
             })
-        // this.getPokemons() /* För att ladda nya pokemon när region.isSelected ändras */
         }
     }
 
-    pokemonDetailsList() {
-        
+    statsOrMoves(param: number) {
+        let myClonedArray = [...this.state.statsAndMoves]
+        const foundIndex = myClonedArray.findIndex((statOrMove) => {
+            return statOrMove.isSelected
+        })
+        if(foundIndex == -1) {
+            myClonedArray[0].isSelected = true
+        }else if (foundIndex + param >= 0 && foundIndex + param < myClonedArray.length){
+            myClonedArray[foundIndex + param].isSelected = true
+            myClonedArray[foundIndex].isSelected = false
+        }
+        this.setState({
+            statsAndMoves: myClonedArray
+        })
     }
+
+
      
 
 
