@@ -5,19 +5,19 @@ import { PokeContext, PokemonOptions } from "../context/pokeContext"
 /* Kanske köra device size state här */
 export default function Layout() {
     return (
-        <PokeContext.Consumer>
+         <PokeContext.Consumer>
             {
-                ({currentRegion}) => (
+                ({currentRegion}) => ( 
                 
-                    <div style={{...layoutStyle, backgroundImage:currentRegion?.background}}>
+                    <div style={{...layoutStyle,  backgroundImage:currentRegion?.background }}>
                         <Pokedex />
                     </div>
-                      
+                       
                 )
             }
         </PokeContext.Consumer>   
 
-
+ 
 
        
     );

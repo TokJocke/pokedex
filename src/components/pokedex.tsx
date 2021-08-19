@@ -14,11 +14,13 @@ import BtnLayout from "./pokedexLayout/btnLayout"
 import GrayBoxes from "./pokedexLayout/grayBoxes"
 import { BrowserRouter } from 'react-router-dom';
 import { PokeContext, PokemonIndex, PokemonFuncs, PokemonOptions } from "../context/pokeContext" 
+
 type Device = {
     isMobile: boolean,
     isTablet: boolean,
     isDesktop: boolean
 }
+
 
 interface Props {
     
@@ -63,13 +65,15 @@ export default class Pokedex extends React.Component<Props, State> {
     return currentDevice
 }
 
-
+    
     render() {
-
+        
         return (
+
 
             <BrowserRouter>
                     <div style={{...mainWrap, flexDirection: this.state.device.isMobile ? "column" : this.state.device.isTablet ? "row" : "row"}  }> 
+
                         <PokeDexSide> 
                             <PokeDexTop bgImg={ leftTopBgImg } />
                             <PokeDexCenter> 

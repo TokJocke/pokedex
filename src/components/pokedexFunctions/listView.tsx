@@ -4,21 +4,32 @@ import { RouteComponentProps } from "react-router-dom"
 import { render } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { useContext } from 'react';
+import { useState } from 'react';
 
 
 
 export default function ListView(props: RouteComponentProps) {
    
     const pokemonDetails: PokemonOptions = useContext(PokeContext)
-    const resetPokemonDetails: (param: PokemonOptions) => void = pokemonDetails => {
-        if(pokemonDetails.pokemonData) {
-            pokemonDetails.pokemonData = undefined
-        }
-    }
 
+/*      const resetPokemonDetails: (param: PokemonOptions) => void = pokemonDetails => {
+        if(pokemonDetails.pokemonData) {
+            setData(undefined)   
+        }
+    } */
+    
+    React.useEffect(() => {
+        console.log("useEffect in listview")
+        if(pokemonDetails.pokemonData) {
+            pokemonDetails.pokemonFuncs.getPokemonDetails(0)
+        }
+    })
+
+  
+    
     const renderPokemonList: (value: PokemonOptions) => ReactNode  = ({allPokemons}) => {
         
-        resetPokemonDetails(pokemonDetails)
+        //resetPokemonDetails(pokemonDetails)
         
         if(!allPokemons.length) {
             return <p>is loading</p>

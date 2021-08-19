@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { createBrowserHistory } from "history";
 import Blink from "../blink"
 
+
 interface Props {
     
 }
@@ -48,7 +49,9 @@ export default class NavBtnWrap extends React.Component {
             <div style = { wrapStyle }>
                 {/* Bestämmer url vid detailview */}
                 { this.context.allPokemons.length? this.selectBtn() : pokemonSpan  } {/* Renderar knapp med onclick om listan finns annars knapp utan funktion */}
+
                 <Blink></Blink>
+
                 <Dpad setPokemon={this.context.pokemonFuncs.setPokemon} /> 
             </div>     
         )   

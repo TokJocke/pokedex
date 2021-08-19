@@ -13,21 +13,23 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
 
 
     async componentDidMount() {
-        this.context.pokemonFuncs.setRegion() //for testing
-        await this.context.pokemonFuncs.getPokemonDetails(this.props.match.params.pokeId)
-        console.log("did mount")
+       // this.context.pokemonFuncs.setRegion() //for testing
+        await this.context.pokemonFuncs.getPokemonDetails(parseInt(this.props.match.params.pokeId))
+        console.log("did mount", parseInt(this.props.match.params.pokeId))
     }
     
 
     render() {
         console.log(this.context.pokemonData)
         if(this.context.pokemonData) {
-            //console.log(this.context.pokemonFuncs["setRegion"])
             return (
 
-                <div style = { sprite }>
-                <img style = { sprite } src={this.context.pokemonData.sprites.front_default}/>
-
+                <div style = { wrapp }>
+                    <img style={sprite} src={this.context.pokemonData.sprites.front_default}/>
+                    <div style={infoDiv}>
+                        <p style={textStyle}>Height: {this.context.pokemonData.height * 10}cm</p> {/* "The height of the Pokémon, in tenths of a meter (decimeters)" */}
+                        <p style={textStyle}>Weight: {this.context.pokemonData.weight / 10}kg</p> {/* "The weight of the Pokémon, in tenths of a kilogram (hectograms)" */}
+                    </div>
                 </div>
             );
         }
@@ -36,9 +38,36 @@ export default class DetailView extends React.Component<RouteComponentProps<{pok
     
 }
 
+export const wrapp: CSSProperties = {
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    display: "flex",
+    alignItems: "flex-end" /* To get infoDiv att bottom img not effected cuz of width & height 100% */
+}
+
 export const sprite: CSSProperties = {
     width: "100%",
-    height: "100%"
+    height: "100%",
+}
+
+export const infoDiv: CSSProperties = {
+    position: "absolute",
+    zIndex: 5,
+/*     display: "flex",
+    justifyContent: "space-between",
+    width: "100%", */
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    padding: "1px",
+    borderRadius: "5px",    
+}
+
+export const textStyle: CSSProperties = {
+    margin: "0",
+    //backgroundColor: "rgba(255, 255, 255, 0.4)",
+    fontWeight: "bold",
+    fontSize: "0.9em"
+    //borderRadius: "5px",
 }
 
 DetailView.contextType = PokeContext

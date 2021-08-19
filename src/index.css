@@ -16,6 +16,7 @@ code {
     monospace;
 }
 
+
 @keyframes blinker {
   10% {
     background-color: rgb(241, 178, 126);
@@ -27,6 +28,7 @@ code {
     background-color: rgb(241, 178, 126);
   }
 }
+
 
 #mainDisplayView::-webkit-scrollbar, #secondDisplayView::-webkit-scrollbar {
   display: none;
