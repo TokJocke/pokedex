@@ -78,7 +78,7 @@ export default class Pokedex extends React.Component<Props, State> {
                             <PokeDexTop bgImg={ leftTopBgImg } />
                             <PokeDexCenter> 
                                 <PokeDexMainDisplay />
-                                <NavBtnWrap/>
+                                <NavBtnWrap/> {/* knappar */}
                             </PokeDexCenter>
                             <PokeDexBottom> 
                                 <SearchInput />
@@ -89,8 +89,8 @@ export default class Pokedex extends React.Component<Props, State> {
                             <PokeDexTop bgImg={ rightTopBgImg } />
                             <PokeDexCenter>
                                 <PokeDexSecondDisplay />
-                            <BtnLayout />
-                        </PokeDexCenter>
+                                <BtnLayout /> {/* knappar */}
+                            </PokeDexCenter>
                         <PokeDexBottom> 
                             <GrayBoxes />
                         </PokeDexBottom>

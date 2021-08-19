@@ -26,10 +26,19 @@ export default class NavBtnWrap extends React.Component {
             return foundPokemon.id
         }
     }   
+
+    selectedStatOrMove: () => void = () => {
+        const selectedStatOrMove = this.context.statsAndMoves.find((statOrMove: any) => {
+            return statOrMove.isSelected
+        })
+        if(selectedStatOrMove) {
+            return selectedStatOrMove.title
+        }
+    }   
     
     selectBtn: () => JSX.Element = () => {
-        if(this.context.pokemonData !== undefined) {
-            return <span  onClick={ () => console.log("elzzzzzzzzz") } style={roundBtn}></span>
+        if(this.context.pokemonData/*  && this.context.statsAndMoves */) { 
+            return <span style = { roundBtn } />
         }
         else {
             return <Link to={`${this.context.currentRegion?.name}/detail/${this.findId()}`} style = { roundBtn } />

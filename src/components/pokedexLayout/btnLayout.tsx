@@ -21,15 +21,12 @@ export default class BtnLayout extends React.Component {
         super(props)
     }
 
-    
-    /* Fortsätt här och skapa ett sätt att byta region på onclick för knapparna nedanför */
-    /* Lägg till region i url på samma sätt som pokemon */
 
  
  
 
     render() {
-        console.log("inbtnLay =", this.context )
+
         return (
         <div style = {btnFlexbox}>
 
@@ -61,13 +58,15 @@ export default class BtnLayout extends React.Component {
 
             <div style = { btnWhite }>
             <ButtonGroup>
-            <Button             /* Fortsätt här  */
-                onClick={ () => this.context.pokemonData? console.log("WÖÖÖRKING YEEEHA") : this.context.pokemonFuncs.setRegion(+1) } 
+            <Button             
+                onClick={ () => this.context.pokemonData? console.log("Nothing happend") : this.context.pokemonFuncs.setRegion(+1) } 
                 startIcon={<ArrowDownwardIcon/>} style={whiteButton}
             />
             <Button 
-                onClick={ () => this.context.pokemonFuncs.setRegion(-1) }
-                startIcon={<ArrowUpwardIcon/>} style={whiteButton}
+                onClick={ () => this.context.pokemonData? console.log("Nothing happend") : this.context.pokemonFuncs.setRegion(-1) } 
+
+/*                 onClick={ () => this.context.pokemonFuncs.setRegion(-1) }
+ */                startIcon={<ArrowUpwardIcon/>} style={whiteButton}
             />
             </ButtonGroup>
             </div>

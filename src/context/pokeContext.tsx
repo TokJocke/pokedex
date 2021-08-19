@@ -10,6 +10,7 @@ export interface PokemonOptions {
     pokemonFuncs: PokemonFuncs
     currentRegion?: RegionDetails 
     PokedexRegions: RegionDetails[]
+    statsAndMoves?: any
 }
 
 /* export interface Pokemon {
@@ -22,12 +23,18 @@ export interface PokemonIndex {
     isSelected?: boolean
 }
 
+/* statsAndMovesInterface skapa när jag är säker på typning */
+export interface statsAndMovesInterface {
+    
+}
+
 
 /* Function interface */
 export interface PokemonFuncs {
     setPokemon: (param: number) => void
     getPokemonDetails: (id: number) => void
     setRegion: (param: number, region?: string) => void
+    statsOrMoves: (param: number) => void
 }
 
 
@@ -47,6 +54,7 @@ export const PokeContext = createContext({
         setPokemon: (param: number) => {},
         getPokemonDetails: (id: number) => {},
         setRegion: (param: number) => {},
+        statsOrMoves: (param: number) => {}
     },
     currentRegion: undefined,
     PokedexRegions: [],
