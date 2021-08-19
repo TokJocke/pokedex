@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { PokeContext } from '../../context/pokeContext';
 import ErrorBoundry from '../pokedexFunctions/errorBoundry';
 import MainDisplayView from "../pokedexFunctions/mainDisplayView"
-
+import BlinkerDot from ".././blinkerDot"
 
 interface Props {
 
@@ -28,10 +28,7 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
 
             <div style = { displayWrap }>
                 {/* Make theese into component */}
-                <div style = { smallRoundDotWrap }>
-                    <div style = { smallRoundDot } />
-                    <div style = { smallRoundDot } />
-                </div>
+                <BlinkerDot></BlinkerDot>
 
                 <div style = {pokeDexDisplay}>
                     
