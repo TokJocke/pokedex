@@ -93,7 +93,7 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
         const foundIndex = myClonedArray.findIndex((pokemon) => {
             return pokemon.isSelected
         })
-        if(foundIndex == -1) {
+        if(foundIndex === -1) {
             myClonedArray[0].isSelected = true
         }else if (foundIndex + param >= 0 && foundIndex + param < myClonedArray.length){
             myClonedArray[foundIndex + param].isSelected = true
