@@ -58,7 +58,6 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
         else {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
             const jsonData = await response.json()
-            console.log("jsonData = ", jsonData)
                 this.setState({
                     pokemonData: {...jsonData, ...{isSelected: false}} 
                 }, () => {this.getStatsAndMoves()})
@@ -74,14 +73,12 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
                     isSelected: false
                 }
             })
-            console.log(stats)
             const moves: {move: string, isSelected: Boolean}[] = this.state.pokemonData.moves.map((move: {move: any}) => {
                 return {
                     move: move.move.name,
                     isSelected: false
                 }
             })
-            console.log(moves)
             this.setState({
                 statsAndMoves: [
                     
@@ -97,16 +94,14 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
                     }
                     
                 ]
-            }, () => console.log(this.state.statsAndMoves))
+            })
         }
     }
 
     getPokemons = async () => {
-        console.log("inGetPokemons ", this.state.currentRegion)
 
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.state.currentRegion?.pokemonAmount}&offset=${this.state.currentRegion?.offset}`);
         const jsonData = await response.json();
-        console.log(jsonData)
         const allPokemons: PokemonIndex[] = jsonData.results.map((pokemon: {name: string, url: string}) => {
             return {
                 name: pokemon.name,
@@ -114,7 +109,6 @@ export default class PokemonProvider extends Component<Props, PokemonOptions>   
             }
         })
         this.setState({allPokemons}, () => { this.setPokemon(0) })
-        console.log("state in asyncFunc ", this.state.allPokemons)
 
     };
 

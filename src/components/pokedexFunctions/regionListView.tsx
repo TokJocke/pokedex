@@ -26,12 +26,12 @@ export default function RegionListView(props: RouteComponentProps) {
         return regions.map((region) => {
             if(region.isSelected) {
                 return(
-                    <p style={{...regionName, ...highLighted}}>{region.name}</p>
+                    <p key={region.name} style={{...regionName, ...highLighted}}>{region.name}</p>
                 )
             }
             else {
                 return (
-                    <p style={{...regionName}}>{region.name}</p>
+                    <p key={region.name} style={{...regionName}}>{region.name}</p>
                 )
             }
         })
