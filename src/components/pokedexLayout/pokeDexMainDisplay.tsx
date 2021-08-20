@@ -3,6 +3,7 @@ import { PokeContext } from '../../context/pokeContext';
 import ErrorBoundry from '../pokedexFunctions/errorBoundry';
 import MainDisplayView from "../pokedexFunctions/mainDisplayView"
 import BlinkerDot from ".././blinkerDot"
+import Burst from './lines';
 
 interface Props {
 
@@ -43,12 +44,7 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
                 {/* Make theese into component */}
                 <div style = { bottomBorderWrap }>
                     <div style = { mediumRoundDot } />
-                    <div style = { lineWrap }> 
-                        <div style = { line } />
-                        <div style = { line } />
-                        <div style = { line } />
-                        <div style = { line } />
-                    </div>
+                    <Burst></Burst>
                 </div>
 
             </div>
