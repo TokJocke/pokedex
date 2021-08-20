@@ -44,9 +44,8 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
 
                 {/* Make theese into component */}
                 <div style = { bottomBorderWrap }>
-                    <div style = { mediumRoundDot } />
-                    <Burst></Burst>
                 <RedDot></RedDot>
+                    <Burst></Burst>
                 </div>
 
             </div>

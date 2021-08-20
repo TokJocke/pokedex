@@ -86,7 +86,7 @@ export default class Pokedex extends React.Component<Props, State> {
               <NavBtnWrap /> {/* knappar */}
             </PokeDexCenter>
             <PokeDexBottom>
-              <ErrorBoundry>
+              <ErrorBoundry errorMsg = "This didn't work">
                 <SearchInput />
               </ErrorBoundry>
             </PokeDexBottom>

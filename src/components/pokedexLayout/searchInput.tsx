@@ -1,9 +1,8 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import { PokeContext } from "../../context/pokeContext";
-import { Redirect, withRouter } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { Redirect } from "react-router-dom";
 
 interface State {
   result?: string;
@@ -66,19 +65,5 @@ export default class SearchInput extends React.Component<{}, State> {
     }
   }
 }
-/*     createBrowserHistory({ forceRefresh: true }).push(
-      `${this.context.currentRegion?.name}/detail/${
-        this.context.allPokemons.find(foundPokemon).id
-      }`
-    );
-    console.log(createBrowserHistory()); */
-
-/* export const pokeInput: CSSProperties = {
-    backgroundColor: "#51AC5F",
-    border: "2px solid black",
-    width: "90%",
-    height: "55%",
-    fontSize: "1.5em"
-} */
 
 SearchInput.contextType = PokeContext;
