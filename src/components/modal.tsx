@@ -16,10 +16,12 @@ export default class Modal extends Component<Props>{
    }
    componentDidMount(){
         document.body.appendChild(this.element)
+        console.log("did mount")
 
     }
     componentWillUnmount(){
         document.body.removeChild(this.element)
+        console.log("unmount")
     }
     render(){
         return (
