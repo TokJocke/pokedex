@@ -13,14 +13,11 @@ export default class SecondDetailView extends React.Component<RouteComponentProp
         if(!this.context.currentRegion) {
            await this.context.pokemonFuncs.setRegion(0, this.props.match.params.region)
         }   
-        console.log(this.context.currentRegion)
-        console.log("did mount", this.props.match.params.region)
     }
     
 
     render() {
         if(this.context.pokemonData) {
-            console.log(this.context.pokemonData)
             return (
                 <div style = { wrapp }>
                     <h1 style={title}>{this.context.pokemonData.name}</h1>
@@ -36,7 +33,7 @@ export default class SecondDetailView extends React.Component<RouteComponentProp
                 </div>
             );
         }
-        return <p>not working</p>
+        return <p>Loading..</p>
     }
     
 }

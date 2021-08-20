@@ -21,7 +21,7 @@ export default function RegionListView(props: RouteComponentProps) {
     const renderRegionList: () => ReactNode = () => {
         const regions = pokemonDetails.PokedexRegions
         if(!regions.length) {
-            return <p>No regions found..</p>
+            return <p>Loading..</p>
         }
         return regions.map((region) => {
             if(region.isSelected) {

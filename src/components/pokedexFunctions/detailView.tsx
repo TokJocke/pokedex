@@ -23,8 +23,7 @@ export default class DetailView extends React.Component<
   }
 
   shouldComponentUpdate(nextProps: any) {
-    console.log(nextProps);
-    console.log(this.props);
+
     if (this.props !== nextProps) {
       window.location.reload();
       return true;
@@ -54,7 +53,7 @@ export default class DetailView extends React.Component<
         </div>
       );
     }
-    return <p>not working</p>;
+    return <p>Loading..</p>;
   }
 }
 
