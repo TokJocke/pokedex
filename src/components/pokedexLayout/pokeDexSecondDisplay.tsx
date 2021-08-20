@@ -17,7 +17,7 @@ export default function PokeDexSecondDisplay() {
             <Switch> 
                 <Route exact path={"/"} component={RegionListView} />    
                 {/* <Route path={"/:region/detail/:pokeId/:statOrMove"} component={FurtherDetailView}/> */}
-                <ErrorBoundry>
+                <ErrorBoundry errorMsg="The Pokedex is broken">
                     <Route path={"/:region/detail/:pokeId"} component={SecondDetailView} />
                 </ErrorBoundry>
             </Switch>   

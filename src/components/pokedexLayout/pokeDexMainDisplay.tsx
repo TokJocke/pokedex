@@ -3,7 +3,8 @@ import { PokeContext } from '../../context/pokeContext';
 import ErrorBoundry from '../pokedexFunctions/errorBoundry';
 import MainDisplayView from "../pokedexFunctions/mainDisplayView"
 import BlinkerDot from ".././blinkerDot"
-
+import RedDot from ".././redDot"
+import Lines from '../lines';
 interface Props {
 
 
@@ -33,8 +34,8 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
                 <div style = {pokeDexDisplay}>
                     
                        
-                    <ErrorBoundry>
-                        <MainDisplayView /> 
+                    <ErrorBoundry errorMsg="The Pokedex is broken">
+                        <MainDisplayView/> 
                     </ErrorBoundry>            
                         
                     
@@ -42,13 +43,8 @@ export default class PokeDexMainDisplay extends React.Component<Props, State> {
 
                 {/* Make theese into component */}
                 <div style = { bottomBorderWrap }>
-                    <div style = { mediumRoundDot } />
-                    <div style = { lineWrap }> 
-                        <div style = { line } />
-                        <div style = { line } />
-                        <div style = { line } />
-                        <div style = { line } />
-                    </div>
+                <RedDot></RedDot>
+                <Lines></Lines>
                 </div>
 
             </div>
@@ -80,18 +76,6 @@ export const displayWrap: CSSProperties = {
     border: "2px solid black",
 }
 
-export const smallRoundDotWrap: CSSProperties = {
-    display: "flex",
-    flexGrow: 1
-}
-
-export const smallRoundDot: CSSProperties = {
-    padding: "0.3em",
-    borderRadius: "50%",
-    backgroundColor: "red",
-    margin: "6px 3px",
-    border: "0.1px solid black"
-}
 
 export const bottomBorderWrap: CSSProperties = {
     display: "flex",
@@ -101,25 +85,8 @@ export const bottomBorderWrap: CSSProperties = {
     padding: "4% 8%"
 }
 
-export const mediumRoundDot: CSSProperties = {
-    padding: "0.6em",
-    borderRadius: "50%",
-    backgroundColor: "red",
-    border: "2px solid black"
-}
 
-export const lineWrap: CSSProperties = {
-    display:  "flex",
-    flexDirection: "column",
-    width: "25px",
-    justifyContent: "space-evenly"
-}
 
-export const line: CSSProperties = {
-    height: "3px",
-    backgroundColor: "gray",
-    
-}
 
 
 
