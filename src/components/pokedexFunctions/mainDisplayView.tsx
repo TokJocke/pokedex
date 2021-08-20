@@ -21,7 +21,7 @@ export default function MainDisplayView() {
                 
                     <Route exact path={"/"} component={ListView} />      {/* trying to add dynamic region to url */}
                 
-                    <ErrorBoundry>
+                    <ErrorBoundry errorMsg="The main display is broken">
                         <Route path={"/:region/detail/:pokeId"} component={DetailView} />
                     </ErrorBoundry>
                

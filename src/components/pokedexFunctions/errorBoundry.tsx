@@ -1,7 +1,7 @@
 import React from "react"
 
 interface Props {
-
+    errorMsg: string
 }
 
 interface State {
@@ -19,15 +19,16 @@ export default class ErrorBoundry extends React.Component<Props, State> {
     }
 
     componentDidCatch(error: any, errorInfo: any) {
-        
+        this.setState({ hasError: true })
     }
 
     render() {
         if(this.state.hasError) {
-            return <p>Something went wrong, maybe the pokemons slipped away</p>
+            return <p>{ this.props.errorMsg }</p>
         }
         return this.props.children
     }
 
 
 }
+
