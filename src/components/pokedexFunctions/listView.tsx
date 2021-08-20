@@ -37,12 +37,12 @@ export default function ListView(props: RouteComponentProps) {
         return allPokemons.map((pokemon) => {
             if(pokemon.isSelected) {
                 return(
-                    <p style={{...pokemonName, ...highLighted }}>{pokemon.name}</p>
+                    <p  key={pokemon.id} style={{...pokemonName, ...highLighted }}>{pokemon.name}</p>
                     )
                 }
                 else {
                     return (
-                        <p style={{...pokemonName }}>{pokemon.name}</p>
+                        <p key={pokemon.id} style={{...pokemonName }}>{pokemon.name}</p>
                         )
                 }  
         })
